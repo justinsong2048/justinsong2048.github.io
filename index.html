@@ -3,275 +3,428 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Justin Song | Mechanical Engineering & Hardware Portfolio</title>
+  <title>Justin Song — Mechanical Engineering & Hardware Portfolio</title>
   <meta name="description" content="Engineering portfolio of Justin Song - Mechanical Engineering student at Washington University in St. Louis specializing in mechatronics, aerospace structures, embedded systems, and quantum hardware.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #090d16;
-      --surface: #111827;
-      --surface-border: #1f293d;
-      --surface-hover: #172033;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
-      --text-dim: #6b7280;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.15);
-      --accent-secondary: #818cf8;
-      --tag-bg: rgba(56, 189, 248, 0.08);
-      --tag-border: rgba(56, 189, 248, 0.25);
-      --card-radius: 16px;
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --bg: #141210;
+      --bg-subtle: #191614;
+      --surface: #1e1b18;
+      --surface-border: rgba(255, 245, 235, 0.08);
+      --surface-hover: #26221e;
+      --text-main: #f7f4ee;
+      --text-muted: #a69e94;
+      --text-dim: #6e675f;
+      --accent: #d8cbbe;
+      --accent-warm: #c5b5a4;
+      --accent-gold: #b39d82;
+      --tag-bg: rgba(255, 245, 235, 0.03);
+      --tag-border: rgba(255, 245, 235, 0.12);
+      --card-radius: 12px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg);
       color: var(--text-main);
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      letter-spacing: 0.01em;
     }
-    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    h1, h2, h3, .serif-font {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
     header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(9, 13, 22, 0.85);
-      backdrop-filter: blur(16px);
+      background: rgba(20, 18, 16, 0.88);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--surface-border);
     }
-    .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 80px; }
     .logo {
-      font-weight: 700; font-size: 1.15rem; letter-spacing: -0.02em;
-      color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 10px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.35rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 12px;
     }
-    .logo-badge {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 600;
-      padding: 3px 8px; border-radius: 6px; background: var(--tag-bg); color: var(--accent); border: 1px solid var(--tag-border);
+    .logo-sub {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.15em; color: var(--text-dim); text-transform: uppercase;
+      border-left: 1px solid var(--surface-border); padding-left: 12px;
     }
-    nav ul { display: flex; list-style: none; gap: 28px; align-items: center; }
-    nav a { color: var(--text-muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: var(--transition); }
-    nav a:hover { color: var(--accent); }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px;
-      border-radius: 10px; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: var(--transition); cursor: pointer;
+    nav ul { display: flex; list-style: none; gap: 36px; align-items: center; }
+    nav a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.86rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase; transition: var(--transition);
     }
-    .btn-primary {
-      background: linear-gradient(135deg, #0284c7, #2563eb); color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+    nav a:hover { color: var(--text-main); }
+    .btn-link {
+      font-family: 'Plus Jakarta Sans', sans-serif; display: inline-flex; align-items: center; gap: 10px;
+      color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 500;
+      letter-spacing: 0.04em; transition: var(--transition); padding-bottom: 3px;
+      border-bottom: 1px solid rgba(255, 245, 235, 0.25);
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45); }
-    .btn-outline { background: var(--surface); color: var(--text-main); border: 1px solid var(--surface-border); }
-    .btn-outline:hover { background: var(--surface-hover); border-color: var(--accent); color: var(--accent); }
-    .hero { padding: 90px 0 60px; position: relative; }
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
-      border-radius: 9999px; background: var(--tag-bg); border: 1px solid var(--tag-border);
-      font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-bottom: 24px;
+    .btn-link:hover { border-bottom-color: var(--text-main); transform: translateX(4px); }
+    .btn-capsule {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px;
+      border-radius: 9999px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.05em;
+      text-transform: uppercase; text-decoration: none; border: 1px solid var(--surface-border);
+      color: var(--text-muted); background: var(--surface); transition: var(--transition);
     }
-    .hero-pill span.pulse { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; }
+    .btn-capsule:hover { color: var(--text-main); border-color: var(--accent); background: var(--surface-hover); }
+    .hero { padding: 100px 0 90px; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center; }
+    .hero-eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-gold);
+      margin-bottom: 24px; display: block;
+    }
     .hero h1 {
-      font-size: 3.25rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px;
-      background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-size: 4.4rem; font-weight: 400; line-height: 1.06; letter-spacing: -0.02em;
+      margin-bottom: 28px; color: #faf8f5;
     }
-    .hero p.lead { font-size: 1.18rem; color: var(--text-muted); max-width: 780px; margin-bottom: 32px; line-height: 1.65; }
-    .hero-meta {
-      display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 40px; padding: 18px 24px;
-      background: var(--surface); border: 1px solid var(--surface-border); border-radius: 12px; font-size: 0.88rem;
+    .hero h1 i { font-style: italic; font-family: 'Cormorant Garamond', Georgia, serif; }
+    .hero-statement {
+      font-size: 1.12rem; font-weight: 300; color: var(--text-muted); line-height: 1.7;
+      margin-bottom: 36px; max-width: 560px;
     }
-    .meta-item { display: flex; flex-direction: column; }
-    .meta-label { color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-    .meta-value { color: var(--text-main); font-weight: 600; }
-    .hero-actions { display: flex; gap: 16px; align-items: center; }
-    section { padding: 80px 0; border-top: 1px solid var(--surface-border); }
-    .section-header { margin-bottom: 50px; }
-    .section-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
-    .section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; color: #ffffff; margin-bottom: 12px; }
-    .section-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; }
-    .projects-stack { display: flex; flex-direction: column; gap: 40px; }
-    .project-card {
-      background: var(--surface); border: 1px solid var(--surface-border); border-radius: var(--card-radius);
-      padding: 36px; transition: var(--transition); position: relative; overflow: hidden;
+    .hero-actions { display: flex; gap: 28px; align-items: center; margin-bottom: 48px; }
+    .hero-meta-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      padding-top: 32px; border-top: 1px solid var(--surface-border);
     }
-    .project-card:hover { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4); transform: translateY(-2px); }
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
-    .project-discipline { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
-    .project-timeline { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--text-dim); }
-    .project-title { font-size: 1.6rem; font-weight: 700; color: #ffffff; margin-bottom: 14px; letter-spacing: -0.01em; }
-    .project-summary { font-size: 0.98rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 24px; }
-    .tags-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-    .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--surface-border); color: #cbd5e1; padding: 4px 10px; border-radius: 6px; }
-    .deep-dive-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;
-      background: rgba(9, 13, 22, 0.6); border: 1px solid var(--surface-border); border-radius: 12px; padding: 24px; margin-top: 20px;
+    .strip-item span.label {
+      display: block; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 6px;
     }
-    .dive-column h4 { font-size: 0.82rem; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 10px; }
-    .dive-column ul { list-style: none; font-size: 0.88rem; color: #d1d5db; }
-    .dive-column ul li { position: relative; padding-left: 18px; margin-bottom: 8px; line-height: 1.5; }
-    .dive-column ul li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
-    .asset-placeholder {
-      border: 1px dashed var(--surface-border); border-radius: 10px; background: rgba(255, 255, 255, 0.015);
-      padding: 24px; text-align: center; margin-top: 20px; color: var(--text-dim); font-size: 0.85rem;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    .strip-item span.value { font-size: 0.95rem; font-weight: 500; color: var(--text-main); }
+    .hero-visual {
+      background: linear-gradient(145deg, #1c1916, #161412);
+      border: 1px solid var(--surface-border); border-radius: 24px;
+      padding: 44px 36px; position: relative; overflow: hidden;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
     }
-    .asset-placeholder .icon { font-size: 1.5rem; opacity: 0.7; }
-    .asset-placeholder .asset-title { color: #94a3b8; font-weight: 600; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-    .skill-card { background: var(--surface); border: 1px solid var(--surface-border); border-radius: 14px; padding: 26px; }
-    .skill-category { font-size: 1.05rem; font-weight: 700; color: #ffffff; margin-bottom: 16px; }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .skill-item { font-size: 0.9rem; color: var(--text-muted); display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding-bottom: 6px; }
-    .skill-item span.highlight { color: var(--text-main); font-weight: 500; }
-    .timeline { position: relative; border-left: 2px solid var(--surface-border); padding-left: 32px; margin-left: 10px; }
-    .timeline-item { position: relative; margin-bottom: 40px; }
-    .timeline-item::before {
-      content: ""; position: absolute; left: -39px; top: 6px; width: 12px; height: 12px; border-radius: 50%;
-      background: var(--bg); border: 2px solid var(--accent);
+    .hero-visual::after {
+      content: ""; position: absolute; bottom: -60px; right: -60px; width: 220px; height: 220px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(179, 157, 130, 0.08), transparent 70%);
+      pointer-events: none;
     }
-    .timeline-title { font-size: 1.15rem; font-weight: 700; color: #ffffff; }
-    .timeline-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; color: var(--accent); margin: 4px 0 12px; }
-    .timeline-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; }
-    footer { padding: 60px 0 40px; border-top: 1px solid var(--surface-border); text-align: center; color: var(--text-dim); font-size: 0.88rem; }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; transition: var(--transition); }
-    .footer-links a:hover { color: var(--accent); }
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 2.3rem; }
-      .nav-inner ul { display: none; }
-      .project-card { padding: 24px; }
+    .visual-pill {
+      display: inline-block; font-size: 0.74rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent-gold); margin-bottom: 18px;
+    }
+    .visual-title { font-size: 2.2rem; line-height: 1.18; margin-bottom: 20px; color: var(--text-main); }
+    .visual-disciplines { list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+    .discipline-row {
+      display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 245, 235, 0.05); font-size: 0.9rem; color: var(--text-muted);
+    }
+    .discipline-row span.name {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; color: var(--text-main);
+    }
+    .discipline-row span.metric {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent-warm);
+    }
+    section { padding: 110px 0; border-top: 1px solid var(--surface-border); }
+    .section-head { margin-bottom: 64px; }
+    .section-eyebrow {
+      font-size: 0.74rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--accent-gold); margin-bottom: 14px; display: block;
+    }
+    .section-title { font-size: 3rem; font-weight: 400; color: var(--text-main); margin-bottom: 14px; }
+    .section-desc { font-size: 1.05rem; font-weight: 300; color: var(--text-muted); max-width: 620px; line-height: 1.7; }
+    .projects-container { display: flex; flex-direction: column; gap: 56px; }
+    .editorial-project {
+      background: var(--surface); border: 1px solid var(--surface-border);
+      border-radius: 18px; padding: 48px; transition: var(--transition); position: relative;
+    }
+    .editorial-project:hover {
+      border-color: rgba(216, 203, 190, 0.3); transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+    .project-header-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      flex-wrap: wrap; gap: 16px; margin-bottom: 18px;
+    }
+    .project-discipline {
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-gold);
+    }
+    .project-date { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); }
+    .project-name { font-size: 2.3rem; line-height: 1.18; color: var(--text-main); margin-bottom: 18px; font-weight: 400; }
+    .project-lead {
+      font-size: 1.05rem; font-weight: 300; color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 28px; max-width: 900px;
+    }
+    .tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+    .editorial-tag {
+      font-size: 0.75rem; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.05em;
+      text-transform: uppercase; background: var(--tag-bg); border: 1px solid var(--tag-border);
+      color: var(--accent-warm); padding: 5px 12px; border-radius: 6px;
+    }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      background: var(--bg-subtle); border: 1px solid var(--surface-border);
+      border-radius: 12px; padding: 32px; margin-top: 24px;
+    }
+    .pillar-col h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; font-weight: 500;
+      letter-spacing: 0.02em; color: var(--accent); margin-bottom: 14px; padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 245, 235, 0.06);
+    }
+    .pillar-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .pillar-col ul li {
+      position: relative; padding-left: 16px; font-size: 0.88rem; font-weight: 300;
+      color: #ded7ce; line-height: 1.6;
+    }
+    .pillar-col ul li::before { content: "—"; position: absolute; left: 0; color: var(--accent-gold); }
+    .curated-artifact-frame {
+      margin-top: 28px; border: 1px dashed rgba(255, 245, 235, 0.12);
+      border-radius: 12px; padding: 30px; text-align: center;
+      background: rgba(255, 245, 235, 0.015); color: var(--text-dim); font-size: 0.86rem;
+    }
+    .curated-artifact-frame .artifact-title {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.2rem;
+      color: var(--accent); margin-bottom: 6px;
+    }
+    .skills-quad { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; }
+    .quad-card {
+      background: var(--surface); border: 1px solid var(--surface-border);
+      border-radius: 14px; padding: 36px 30px;
+    }
+    .quad-title {
+      font-size: 1.5rem; margin-bottom: 22px; color: var(--text-main);
+      border-bottom: 1px solid var(--surface-border); padding-bottom: 12px;
+    }
+    .quad-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .quad-item { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.88rem; color: var(--text-muted); }
+    .quad-item span.highlight { font-weight: 500; color: var(--text-main); }
+    .experience-list {
+      display: flex; flex-direction: column; gap: 40px; border-left: 1px solid var(--surface-border);
+      padding-left: 36px; margin-left: 8px;
+    }
+    .experience-entry { position: relative; }
+    .experience-entry::before {
+      content: ""; position: absolute; left: -42px; top: 8px; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--accent-gold); box-shadow: 0 0 10px rgba(179, 157, 130, 0.4);
+    }
+    .entry-role { font-size: 1.6rem; color: var(--text-main); margin-bottom: 4px; }
+    .entry-meta {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent-gold); margin-bottom: 12px;
+    }
+    .entry-body { font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.7; max-width: 800px; }
+    footer { padding: 80px 0 60px; border-top: 1px solid var(--surface-border); text-align: center; }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.5rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-main); margin-bottom: 24px;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 36px; margin-bottom: 32px; }
+    .footer-links a {
+      color: var(--text-muted); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em;
+      text-transform: uppercase; transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--text-main); }
+    .footer-copy { font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.05em; }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero h1 { font-size: 3.2rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .editorial-project { padding: 32px 24px; }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav-inner">
-      <a href="#" class="logo">Justin Song <span class="logo-badge">WashU '28</span></a>
+      <a href="#" class="logo">Justin Song <span class="logo-sub">WashU '28</span></a>
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
+          <li><a href="#works">Works</a></li>
           <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="mailto:j.z.song@wustl.edu" class="btn btn-outline" style="padding: 6px 14px;">Contact</a></li>
+          <li><a href="#disciplines">Capabilities</a></li>
+          <li><a href="mailto:j.z.song@wustl.edu" class="btn-capsule">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <section class="hero" id="about">
-    <div class="container">
-      <div class="hero-pill"><span class="pulse"></span> Seeking Summer 2027 Engineering Internships</div>
-      <h1>Mechanical Engineering, Mechatronics & Quantum Hardware</h1>
-      <p class="lead">
-        Undergraduate engineer at <strong>Washington University in St. Louis</strong> with minors in <strong>Computer Science</strong> and <strong>Philosophy</strong>. Bridging high-precision CAD/FEA mechanical design, hands-on CNC machining, embedded circuit design, and quantum computing hardware fundamentals.
-      </p>
-      <div class="hero-meta">
-        <div class="meta-item"><span class="meta-label">Degree</span><span class="meta-value">B.S. Mechanical Engineering</span></div>
-        <div class="meta-item"><span class="meta-label">Minors</span><span class="meta-value">Computer Science & Philosophy</span></div>
-        <div class="meta-item"><span class="meta-label">GPA</span><span class="meta-value">3.73 / 4.00 (Dean’s List)</span></div>
-        <div class="meta-item"><span class="meta-label">Honors</span><span class="meta-value">QuestBridge Scholar | IBM QGSS '26</span></div>
-        <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">St. Louis, MO & Bay Area, CA</span></div>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Mechanical Engineering & Hardware Systems</span>
+        <h1>A Higher Standard of <i>Precision</i>.</h1>
+        <p class="hero-statement">
+          Undergraduate engineer at <strong>Washington University in St. Louis</strong> with minors in <strong>Computer Science</strong> and <strong>Philosophy</strong>. Bridging high-precision CAD/FEA mechanical design, hands-on CNC machining, embedded firmware architecture, and quantum computing hardware fundamentals.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#works" class="btn-link">Explore the Collection of Works →</a>
+          <a href="https://github.com/justinsong2048" target="_blank" class="btn-capsule">GitHub Profile ↗</a>
+          <a href="https://www.linkedin.com/in/justin-z-song" target="_blank" class="btn-capsule">LinkedIn ↗</a>
+        </div>
+
+        <div class="hero-meta-strip">
+          <div class="strip-item">
+            <span class="label">Major</span>
+            <span class="value">B.S. Mechanical Engineering</span>
+          </div>
+          <div class="strip-item">
+            <span class="label">Academic Standing</span>
+            <span class="value">3.73 GPA (Dean’s List)</span>
+          </div>
+          <div class="strip-item">
+            <span class="label">Distinctions</span>
+            <span class="value">QuestBridge | IBM QGSS '26</span>
+          </div>
+        </div>
       </div>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">Explore Featured Projects ↓</a>
-        <a href="https://www.linkedin.com/in/justin-z-song" target="_blank" class="btn btn-outline">LinkedIn Profile ↗</a>
-        <a href="https://github.com/justinsong2048" target="_blank" class="btn btn-outline">GitHub Profile ↗</a>
+
+      <div class="hero-visual">
+        <span class="visual-pill">Curated Disciplines</span>
+        <h3 class="visual-title">Refined. Technical. Grounded in Math & Shop Craft.</h3>
+        
+        <div class="visual-disciplines">
+          <div class="discipline-row">
+            <span class="name">Aerospace Structures</span>
+            <span class="metric">GD&T • FEA • CNC Delrin</span>
+          </div>
+          <div class="discipline-row">
+            <span class="name">Mechanism Kinematics</span>
+            <span class="metric">SolidWorks Motion • Statics</span>
+          </div>
+          <div class="discipline-row">
+            <span class="name">Embedded Systems</span>
+            <span class="metric">Microcontrollers • I2C • FSM</span>
+          </div>
+          <div class="discipline-row">
+            <span class="name">Autonomous Controls</span>
+            <span class="metric">PD Feedback • MATLAB Euler</span>
+          </div>
+          <div class="discipline-row">
+            <span class="name">Quantum Hardware</span>
+            <span class="metric">Cryogenics • IBM Qiskit</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <a href="#works" class="btn-link" style="font-size: 0.85rem;">View Case Studies ↓</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="projects">
+  <section id="works">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">Technical Portfolio</div>
-        <h2 class="section-title">Featured Engineering Projects</h2>
+      <div class="section-head">
+        <span class="section-eyebrow">Portfolio Collection</span>
+        <h2 class="section-title">Selected Engineering Works</h2>
         <p class="section-desc">
-          Evidence-based case studies spanning aerospace structures, machine kinematic mechanisms, embedded microcontrollers, and autonomous control systems.
+          Case studies documenting first-principles mechanical analysis, dynamic simulation, shop floor manufacturing, and hardware verification.
         </p>
       </div>
 
-      <div class="projects-stack">
+      <div class="projects-container">
         <!-- Project 1: WURocketry -->
-        <article class="project-card" id="project-wurocketry">
-          <div class="card-top">
+        <article class="editorial-project" id="work-wurocketry">
+          <div class="project-header-row">
             <span class="project-discipline">Aerospace Structures • GD&T • CNC Machining</span>
-            <span class="project-timeline">Nov 2025 – Feb 2026</span>
+            <span class="project-date">Nov 2025 – Feb 2026</span>
           </div>
-          <h3 class="project-title">WURocketry Nosecone Shoulder & Delrin Payload Retention Plate</h3>
-          <p class="project-summary">
-            Designed and manufactured a robust mechanical coupling and retention system for the Washington University Rocketry team competing in the NASA University Student Launch Initiative (USLI). The assembly secures internal payload electronics under extreme dynamic flight stresses while enabling modular disassembly.
+          <h3 class="project-name">WURocketry Nosecone Shoulder & Delrin Retention Plate</h3>
+          <p class="project-lead">
+            Designed and manufactured a robust mechanical coupling and retention system for Washington University Rocketry's NASA Student Launch Initiative (USLI) entry. The assembly securely integrates internal payload electronics under severe launch shocks and aerodynamic vibrations.
           </p>
-          <div class="tags-list">
-            <span class="tag">SolidWorks</span><span class="tag">FEA Stress Analysis</span><span class="tag">GD&T</span>
-            <span class="tag">CNC Milling</span><span class="tag">Delrin Machining</span><span class="tag">3D Printing</span><span class="tag">Failure Analysis</span>
+
+          <div class="tags-container">
+            <span class="editorial-tag">SolidWorks</span>
+            <span class="editorial-tag">FEA Stress Modeling</span>
+            <span class="editorial-tag">ASME Y14.5 GD&T</span>
+            <span class="editorial-tag">Delrin Milling</span>
+            <span class="editorial-tag">CNC Machine Shop</span>
+            <span class="editorial-tag">Failure Mode Iteration</span>
           </div>
-          <div class="deep-dive-grid">
-            <div class="dive-column">
-              <h4>01. Objectives & Constraints</h4>
+
+          <div class="pillars-grid">
+            <div class="pillar-col">
+              <h4>01. Objectives & Envelope</h4>
               <ul>
-                <li>Secure high-value scientific payload during high-G launch accelerations and sudden parachute deployment shocks.</li>
-                <li>Design a lightweight 3D-printed nosecone shoulder mated with an engineered Delrin retention plate.</li>
-                <li>Strict geometric clearance constraints within airframe body tube envelope.</li>
+                <li>Retain delicate sensor avionics during high-G launch acceleration and parachute ejection shock.</li>
+                <li>Engineered lightweight 3D-printed nosecone shoulder mated with an internal Delrin bulkhead.</li>
+                <li>Maintained tight radial clearances to guarantee airframe body tube sliding fit.</li>
               </ul>
             </div>
-            <div class="dive-column">
+            <div class="pillar-col">
               <h4>02. CAD, FEA & Tolerancing</h4>
               <ul>
-                <li>Modeled full 3D assembly in SolidWorks using parameterized dimensioning and GD&T fit standards.</li>
-                <li>Conducted Finite Element Analysis (FEA) to simulate dynamic tension and shear loads along linking fasteners.</li>
-                <li>Optimized wall thicknesses and fastener spacing to prevent stress concentrations at transition shoulders.</li>
+                <li>Executed parametric assembly modeling in SolidWorks factoring GD&T true-position tolerances.</li>
+                <li>Simulated shear loads on structural fasteners using FEA to identify localized stress concentrations.</li>
+                <li>Optimized shoulder wall thickness and fastener boss geometry to prevent shear tear-out.</li>
               </ul>
             </div>
-            <div class="dive-column">
-              <h4>03. CNC Machining & Iteration</h4>
+            <div class="pillar-col">
+              <h4>03. Fabrication & Redesign</h4>
               <ul>
-                <li>Machined the final payload plate from Delrin stock, integrating manual lathe turning and G-code CNC milling.</li>
-                <li>Discovered structural stress flaws during initial maximum-stress drop tests and body tube sizing updates.</li>
-                <li>Iterated shoulder geometry and internal ribbing, validating 100% survival during physical verification tests.</li>
+                <li>Machined the final plate from Delrin stock, integrating manual turning and programmed CNC G-code paths.</li>
+                <li>Identified structural yield flaws during maximum-stress drop tests and body tube sizing updates.</li>
+                <li>Iterated internal ribbing geometry, achieving 100% survival on subsequent validation tests.</li>
               </ul>
             </div>
           </div>
-          <div class="asset-placeholder">
-            <div class="icon">📐</div>
-            <div class="asset-title">Visual Artifact Space: SolidWorks Isometric Explode & Delrin Machined Assembly</div>
-            <p>Upload: CAD sectional render, FEA von Mises stress colormap, and physical CNC machined retention plate photograph.</p>
+
+          <div class="curated-artifact-frame">
+            <div class="artifact-title">SolidWorks Sectional Assembly & Delrin Machined Bulkhead</div>
+            <p>Artifact placeholder: CAD section render, FEA von Mises stress heatmap, and physical CNC machined component photo.</p>
           </div>
         </article>
 
         <!-- Project 2: Ghost Armoire -->
-        <article class="project-card" id="project-ghost-armoire">
-          <div class="card-top">
+        <article class="editorial-project" id="work-ghost-armoire">
+          <div class="project-header-row">
             <span class="project-discipline">Mechanism Design • Dynamics • MATLAB Kinematics</span>
-            <span class="project-timeline">Apr 2026</span>
+            <span class="project-date">Apr 2026</span>
           </div>
-          <h3 class="project-title">Ghost Armoire Set Piece CAD, Statics & Motion Analysis</h3>
-          <p class="project-summary">
-            Engineered a theatrical trick armoire supporting a 140 lb live performer. The multi-mechanism assembly features a rack-and-pinion cantilever, tension gas spring lowering dock, and constant-force spring door mechanism engineered for silent, smooth, and failsafe live theatrical execution.
+          <h3 class="project-name">Theatrical Armoire CAD, Statics & Kinematic Analysis</h3>
+          <p class="project-lead">
+            Engineered a theatrical trick armoire supporting a 140 lb live performer. The multi-mechanism assembly features a rack-and-pinion cantilever, tension gas spring lowering dock, and constant-force spring door mechanism engineered for silent, smooth, and failsafe live execution.
           </p>
-          <div class="tags-list">
-            <span class="tag">SolidWorks Motion</span><span class="tag">MATLAB Statics</span><span class="tag">Rack-and-Pinion</span>
-            <span class="tag">Gas Springs</span><span class="tag">Kinematics</span><span class="tag">Human Factors Safety</span>
+
+          <div class="tags-container">
+            <span class="editorial-tag">SolidWorks Motion</span>
+            <span class="editorial-tag">MATLAB Dynamics</span>
+            <span class="editorial-tag">Rack-and-Pinion</span>
+            <span class="editorial-tag">Gas Springs</span>
+            <span class="editorial-tag">Tip-Over Stability</span>
+            <span class="editorial-tag">Human Factors Safety</span>
           </div>
-          <div class="deep-dive-grid">
-            <div class="dive-column">
-              <h4>01. Engineering Constraints</h4>
+
+          <div class="pillars-grid">
+            <div class="pillar-col">
+              <h4>01. Physical Constraints</h4>
               <ul>
-                <li>Safely support a 140 lb performer with redundant structural factor of safety during rapid stage transitions.</li>
-                <li>Acoustic limitation: Required smooth, ultra-low-noise mechanical movement during quiet performance scenes.</li>
+                <li>Safely support a 140 lb performer with redundant structural factor of safety during live stage cues.</li>
+                <li>Acoustic limitation: Required silent, smooth mechanical travel during quiet performance dialogue.</li>
                 <li>Ergonomic requirement: Actuation force required by backstage operators must not exceed 1.5 lbf.</li>
               </ul>
             </div>
-            <div class="dive-column">
-              <h4>02. MATLAB Statics & Stability</h4>
+            <div class="pillar-col">
+              <h4>02. MATLAB Statics & Equilibrium</h4>
               <ul>
                 <li>Formulated mathematical equations for tip-over moment equilibrium, center-of-mass shifts, and beam deflections in MATLAB.</li>
                 <li>Calculated a precise 244 lb counterweight ballast configuration to guarantee absolute dynamic tipping stability.</li>
                 <li>Evaluated beam bending stresses across cantilever rails to prevent binding during stage movement.</li>
               </ul>
             </div>
-            <div class="dive-column">
-              <h4>03. SolidWorks Motion Simulation</h4>
+            <div class="pillar-col">
+              <h4>03. Motion Simulation & Tuning</h4>
               <ul>
                 <li>Simulated full 3D assembly kinematics, bevel gear meshing ratios, and spring-latch linkages in SolidWorks Motion.</li>
                 <li>Tuned constant-force door springs and tension gas springs to eliminate abrupt impact stops and mechanical clatter.</li>
@@ -279,29 +432,36 @@
               </ul>
             </div>
           </div>
-          <div class="asset-placeholder">
-            <div class="icon">⚙️</div>
-            <div class="asset-title">Visual Artifact Space: Kinematic Mechanism Diagram & MATLAB Stability Plots</div>
-            <p>Upload: SolidWorks Motion simulation animation/render, free-body diagram, and MATLAB tip-over equilibrium curves.</p>
+
+          <div class="curated-artifact-frame">
+            <div class="artifact-title">Mechanism Kinematic Diagram & Dynamic Stability Equilibrium Curves</div>
+            <p>Artifact placeholder: SolidWorks Motion simulation render, free-body diagram, and MATLAB tip-over moment analysis.</p>
           </div>
         </article>
 
-        <!-- Project 3: Simon Memory Game -->
-        <article class="project-card" id="project-simon">
-          <div class="card-top">
-            <span class="project-discipline">Embedded Systems • Microcontrollers • Circuit Design</span>
-            <span class="project-timeline">Nov 2025</span>
+        <!-- Project 3: Simon Game -->
+        <article class="editorial-project" id="work-simon">
+          <div class="project-header-row">
+            <span class="project-discipline">Embedded Systems • Microcontrollers • Circuit Architecture</span>
+            <span class="project-date">Nov 2025</span>
           </div>
-          <h3 class="project-title">"Simon" Microcontroller Memory Game Emulation</h3>
-          <p class="project-summary">
+          <h3 class="project-name">"Simon" Microcontroller Memory Game Emulation</h3>
+          <p class="project-lead">
             Designed and built an interactive hardware clone of the classic Simon memory game using an Arduino microcontroller. Engineered the peripheral circuit routing, I2C digital communications, and non-blocking Finite-State-Machine (FSM) firmware architecture packaged within a custom 3D-printed enclosure.
           </p>
-          <div class="tags-list">
-            <span class="tag">Arduino</span><span class="tag">Embedded C/C++</span><span class="tag">Finite-State-Machines</span>
-            <span class="tag">I2C Protocol</span><span class="tag">KiCAD Schematics</span><span class="tag">Soldering & Wiring</span><span class="tag">3D Enclosure</span>
+
+          <div class="tags-container">
+            <span class="editorial-tag">Arduino</span>
+            <span class="editorial-tag">Embedded C/C++</span>
+            <span class="editorial-tag">Finite-State-Machines</span>
+            <span class="editorial-tag">I2C Protocol</span>
+            <span class="editorial-tag">KiCAD Schematics</span>
+            <span class="editorial-tag">Wire Routing</span>
+            <span class="editorial-tag">3D Enclosure</span>
           </div>
-          <div class="deep-dive-grid">
-            <div class="dive-column">
+
+          <div class="pillars-grid">
+            <div class="pillar-col">
               <h4>01. Firmware & FSM Architecture</h4>
               <ul>
                 <li>Developed deterministic Finite-State-Machine (FSM) state logic (Idle, Pattern Generation, Playback, User Input, Scoring, Game Over).</li>
@@ -309,7 +469,7 @@
                 <li>Implemented dynamic difficulty scaling, increasing pattern sequences and reducing audio-visual intervals.</li>
               </ul>
             </div>
-            <div class="dive-column">
+            <div class="pillar-col">
               <h4>02. Electrical & I2C Protocols</h4>
               <ul>
                 <li>Integrated multi-peripheral communication using I2C bus architecture for an SSD1306 OLED display and audio synthesizers.</li>
@@ -317,8 +477,8 @@
                 <li>Soldered wiring harnesses and power distribution rails with clean insulation and stress-relieved interconnects.</li>
               </ul>
             </div>
-            <div class="dive-column">
-              <h4>03. Physical Packaging & Testing</h4>
+            <div class="pillar-col">
+              <h4>03. Packaging & Reliability</h4>
               <ul>
                 <li>Modeled an ergonomic handheld chassis in CAD with snap-fit mounts, tactile button guides, and battery compartments.</li>
                 <li>Addressed tight internal wire routing to maintain signal integrity and eliminate crosstalk.</li>
@@ -326,37 +486,43 @@
               </ul>
             </div>
           </div>
-          <div class="asset-placeholder">
-            <div class="icon">🔌</div>
-            <div class="asset-title">Visual Artifact Space: Circuit Schematic, Wiring Harness & 3D Printed Prototype</div>
-            <p>Upload: KiCAD schematic, state transition logic diagram, and photograph of the illuminated physical build.</p>
+
+          <div class="curated-artifact-frame">
+            <div class="artifact-title">KiCAD Circuit Schematic, Finite State Machine & Physical Assembly</div>
+            <p>Artifact placeholder: Schematic diagram, FSM state transition flowchart, and illuminated hardware photograph.</p>
           </div>
         </article>
 
-        <!-- Project 4: MATLAB ACC Simulation -->
-        <article class="project-card" id="project-acc">
-          <div class="card-top">
-            <span class="project-discipline">Control Systems • Numerical Methods • Autonomous Vehicles</span>
-            <span class="project-timeline">May 2025</span>
+        <!-- Project 4: ACC Simulation -->
+        <article class="editorial-project" id="work-acc">
+          <div class="project-header-row">
+            <span class="project-discipline">Control Systems • Numerical Methods • Dynamic Simulation</span>
+            <span class="project-date">May 2025</span>
           </div>
-          <h3 class="project-title">Autonomous Adaptive Cruise Control (ACC) PD Simulation</h3>
-          <p class="project-summary">
+          <h3 class="project-name">Autonomous Adaptive Cruise Control (ACC) PD Simulation</h3>
+          <p class="project-summary project-lead">
             Modeled and simulated an autonomous Adaptive Cruise Control system in MATLAB. Formulated a Proportional-Derivative (PD) controller to dynamically govern vehicle velocity and throttle actuation, maintaining a guaranteed 180-foot safety distance across dynamic braking and acceleration profiles without collisions.
           </p>
-          <div class="tags-list">
-            <span class="tag">MATLAB</span><span class="tag">PD Control</span><span class="tag">Numerical Integration</span>
-            <span class="tag">Euler's Method</span><span class="tag">Autonomous Systems</span><span class="tag">Vehicle Dynamics</span>
+
+          <div class="tags-container">
+            <span class="editorial-tag">MATLAB</span>
+            <span class="editorial-tag">PD Control</span>
+            <span class="editorial-tag">Numerical Integration</span>
+            <span class="editorial-tag">Euler's Method</span>
+            <span class="editorial-tag">Autonomous Vehicles</span>
+            <span class="editorial-tag">Dynamic Modeling</span>
           </div>
-          <div class="deep-dive-grid">
-            <div class="dive-column">
-              <h4>01. Vehicle Modeling & Control Formulation</h4>
+
+          <div class="pillars-grid">
+            <div class="pillar-col">
+              <h4>01. Dynamics & Control Formulation</h4>
               <ul>
                 <li>Formulated longitudinal second-order vehicle dynamic equations factoring vehicle inertia, drag, and tire friction.</li>
                 <li>Designed a Proportional-Derivative (PD) feedback control loop acting on distance error and relative velocity.</li>
                 <li>Enforced realistic powertrain constraints, capping maximum acceleration and emergency deceleration limits.</li>
               </ul>
             </div>
-            <div class="dive-column">
+            <div class="pillar-col">
               <h4>02. Numerical Simulation</h4>
               <ul>
                 <li>Implemented Euler's numerical integration algorithm from first principles in MATLAB scripts to solve state trajectories.</li>
@@ -364,8 +530,8 @@
                 <li>Guaranteed smooth velocity transitions to ensure realistic passenger comfort profiles.</li>
               </ul>
             </div>
-            <div class="dive-column">
-              <h4>03. Stress Scenarios & Validation</h4>
+            <div class="pillar-col">
+              <h4>03. Dynamic Stress Scenarios</h4>
               <ul>
                 <li>Benchmarked controller performance across 3 distinct test scenarios: highway cruising, sudden emergency stops, and stop-and-go waves.</li>
                 <li>Generated dynamic state plots demonstrating target convergence to the designated 180 ft safety buffer.</li>
@@ -373,29 +539,35 @@
               </ul>
             </div>
           </div>
-          <div class="asset-placeholder">
-            <div class="icon">📈</div>
-            <div class="asset-title">Visual Artifact Space: MATLAB Distance/Velocity Step-Response Plots</div>
-            <p>Upload: MATLAB simulation plot showing follower vs. lead car velocity, relative distance, and acceleration curves.</p>
+
+          <div class="curated-artifact-frame">
+            <div class="artifact-title">MATLAB Dynamic Distance, Velocity & Acceleration Response Curves</div>
+            <p>Artifact placeholder: Transient response plot comparing follower and lead car trajectories under emergency braking.</p>
           </div>
         </article>
 
         <!-- Project 5: Carnival Ride CAD -->
-        <article class="project-card" id="project-carnival-cad">
-          <div class="card-top">
+        <article class="editorial-project" id="work-carnival">
+          <div class="project-header-row">
             <span class="project-discipline">Machine Elements • GD&T • Manufacturing Drawings</span>
-            <span class="project-timeline">May 2025</span>
+            <span class="project-date">May 2025</span>
           </div>
-          <h3 class="project-title">"Frisbee" Carnival Ride CAD & Kinematic Clearance Project</h3>
-          <p class="project-summary">
+          <h3 class="project-name">"Frisbee" Carnival Ride CAD & Kinematic Clearance Project</h3>
+          <p class="project-summary project-lead">
             Engineered a complete mechanical assembly of an industrial "Frisbee" pendulum-swing carnival ride in SolidWorks. Conducted multi-body kinematic clearance studies, researched mechanical component specifications, and generated formal 2D manufacturing drawings compliant with ASME Y14.5 GD&T standards.
           </p>
-          <div class="tags-list">
-            <span class="tag">SolidWorks</span><span class="tag">2D Engineering Drawings</span><span class="tag">ASME Y14.5 GD&T</span>
-            <span class="tag">Kinematic Clearance</span><span class="tag">Assembly Modeling</span><span class="tag">Machine Elements</span>
+
+          <div class="tags-container">
+            <span class="editorial-tag">SolidWorks</span>
+            <span class="editorial-tag">2D Blueprints</span>
+            <span class="editorial-tag">ASME Y14.5 GD&T</span>
+            <span class="editorial-tag">Kinematic Clearance</span>
+            <span class="editorial-tag">Machine Elements</span>
+            <span class="editorial-tag">Assembly Modeling</span>
           </div>
-          <div class="deep-dive-grid">
-            <div class="dive-column">
+
+          <div class="pillars-grid">
+            <div class="pillar-col">
               <h4>01. Machine Specifications & Research</h4>
               <ul>
                 <li>Researched full-scale amusement ride structural specifications to derive realistic component envelopes and bearing sizes.</li>
@@ -403,7 +575,7 @@
                 <li>Selected standard commercial fasteners, spherical roller bearings, and drive pinions.</li>
               </ul>
             </div>
-            <div class="dive-column">
+            <div class="pillar-col">
               <h4>02. GD&T Manufacturing Drawings</h4>
               <ul>
                 <li>Drafted comprehensive 2D manufacturing blueprints with orthographic, isometric, and detailed breakaway views.</li>
@@ -411,7 +583,7 @@
                 <li>Ensured proper transitional and press-fit tolerances for rotating mechanical shafts and sleeve interfaces.</li>
               </ul>
             </div>
-            <div class="dive-column">
+            <div class="pillar-col">
               <h4>03. Collision & Clearance Verification</h4>
               <ul>
                 <li>Executed dynamic collision detection throughout 360-degree rotation and full 120-degree pendulum swing arcs.</li>
@@ -420,64 +592,68 @@
               </ul>
             </div>
           </div>
-          <div class="asset-placeholder">
-            <div class="icon">🎡</div>
-            <div class="asset-title">Visual Artifact Space: SolidWorks Assembly & 2D Production Blueprints</div>
-            <p>Upload: High-resolution CAD assembly render, full-sweep kinematic arc diagram, and 2D GD&T drafting sheet.</p>
+
+          <div class="curated-artifact-frame">
+            <div class="artifact-title">SolidWorks 3D Assembly & Formal 2D Manufacturing Blueprints</div>
+            <p>Artifact placeholder: Isometric assembly rendering, full swing clearance diagram, and ASME Y14.5 drawing sheet.</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section id="skills">
+  <section id="disciplines">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">Capabilities</div>
-        <h2 class="section-title">Technical Skills & Tooling</h2>
+      <div class="section-head">
+        <span class="section-eyebrow">Expertise</span>
+        <h2 class="section-title">Technical Capabilities & Tooling</h2>
         <p class="section-desc">
-          Proficiencies spanning precision mechanical design, workshop fabrication, embedded electronics, and scientific computation.
+          Interdisciplinary proficiencies spanning mechanical CAD, machine shop tooling, circuit layout, and scientific software.
         </p>
       </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-category">🛠️ Hardware & Design</div>
-          <ul class="skill-list">
-            <li class="skill-item"><span>CAD Modeling</span><span class="highlight">SolidWorks</span></li>
-            <li class="skill-item"><span>Drafting & Standards</span><span class="highlight">GD&T (ASME Y14.5)</span></li>
-            <li class="skill-item"><span>Simulation</span><span class="highlight">FEA Stress Analysis</span></li>
-            <li class="skill-item"><span>PCB Design</span><span class="highlight">KiCAD</span></li>
-            <li class="skill-item"><span>Mechanism Modeling</span><span class="highlight">SolidWorks Motion</span></li>
+
+      <div class="skills-quad">
+        <div class="quad-card">
+          <h3 class="quad-title">Hardware & Design</h3>
+          <ul class="quad-list">
+            <li class="quad-item"><span>CAD Modeling</span><span class="highlight">SolidWorks</span></li>
+            <li class="quad-item"><span>Drafting Standard</span><span class="highlight">ASME Y14.5 GD&T</span></li>
+            <li class="quad-item"><span>FEA Simulation</span><span class="highlight">Stress & Deflection</span></li>
+            <li class="quad-item"><span>PCB Design</span><span class="highlight">KiCAD</span></li>
+            <li class="quad-item"><span>Kinematics</span><span class="highlight">SolidWorks Motion</span></li>
           </ul>
         </div>
-        <div class="skill-card">
-          <div class="skill-category">⚙️ Machining & Fabrication</div>
-          <ul class="skill-list">
-            <li class="skill-item"><span>Milling</span><span class="highlight">CNC & Manual Mill</span></li>
-            <li class="skill-item"><span>Turning</span><span class="highlight">Engine Lathe</span></li>
-            <li class="skill-item"><span>Additive</span><span class="highlight">FDM 3D Printing</span></li>
-            <li class="skill-item"><span>Shop Tools</span><span class="highlight">Bandsaws, Drill Press</span></li>
-            <li class="skill-item"><span>Electronics Assembly</span><span class="highlight">Precision Soldering</span></li>
+
+        <div class="quad-card">
+          <h3 class="quad-title">Machining & Fabrication</h3>
+          <ul class="quad-list">
+            <li class="quad-item"><span>Milling</span><span class="highlight">CNC & Manual Mill</span></li>
+            <li class="quad-item"><span>Turning</span><span class="highlight">Engine Lathe</span></li>
+            <li class="quad-item"><span>Additive</span><span class="highlight">FDM 3D Printing</span></li>
+            <li class="quad-item"><span>Shop Operations</span><span class="highlight">Bandsaws, Drill Press</span></li>
+            <li class="quad-item"><span>Electronics</span><span class="highlight">Precision Soldering</span></li>
           </ul>
         </div>
-        <div class="skill-card">
-          <div class="skill-category">⚡ Embedded & Circuits</div>
-          <ul class="skill-list">
-            <li class="skill-item"><span>Microcontrollers</span><span class="highlight">Arduino, ESP32</span></li>
-            <li class="skill-item"><span>Protocols</span><span class="highlight">I2C, SPI, UART</span></li>
-            <li class="skill-item"><span>Architecture</span><span class="highlight">Finite-State-Machines</span></li>
-            <li class="skill-item"><span>Hardware Interfacing</span><span class="highlight">Sensors & Actuators</span></li>
-            <li class="skill-item"><span>Quantum Hardware</span><span class="highlight">Cryogenics & RF Packaging</span></li>
+
+        <div class="quad-card">
+          <h3 class="quad-title">Embedded & Circuits</h3>
+          <ul class="quad-list">
+            <li class="quad-item"><span>Microcontrollers</span><span class="highlight">Arduino, ESP32</span></li>
+            <li class="quad-item"><span>Bus Protocols</span><span class="highlight">I2C, SPI, UART</span></li>
+            <li class="quad-item"><span>Architecture</span><span class="highlight">Finite-State-Machines</span></li>
+            <li class="quad-item"><span>Hardware I/O</span><span class="highlight">Sensors & Actuators</span></li>
+            <li class="quad-item"><span>Quantum Hardware</span><span class="highlight">Cryogenics & Microwave RF</span></li>
           </ul>
         </div>
-        <div class="skill-card">
-          <div class="skill-category">💻 Software & Computation</div>
-          <ul class="skill-list">
-            <li class="skill-item"><span>Languages</span><span class="highlight">C++, Python, Java</span></li>
-            <li class="skill-item"><span>Scientific Computing</span><span class="highlight">MATLAB</span></li>
-            <li class="skill-item"><span>Quantum Framework</span><span class="highlight">IBM Qiskit</span></li>
-            <li class="skill-item"><span>Numerical Methods</span><span class="highlight">Euler & Runge-Kutta</span></li>
-            <li class="skill-item"><span>Data & Automation</span><span class="highlight">Airtable, REST APIs</span></li>
+
+        <div class="quad-card">
+          <h3 class="quad-title">Software & Mathematics</h3>
+          <ul class="quad-list">
+            <li class="quad-item"><span>Languages</span><span class="highlight">C++, Python, Java</span></li>
+            <li class="quad-item"><span>Computation</span><span class="highlight">MATLAB</span></li>
+            <li class="quad-item"><span>Quantum Tools</span><span class="highlight">IBM Qiskit</span></li>
+            <li class="quad-item"><span>Numerical Methods</span><span class="highlight">Euler & Runge-Kutta</span></li>
+            <li class="quad-item"><span>Data Pipelines</span><span class="highlight">Airtable, REST APIs</span></li>
           </ul>
         </div>
       </div>
@@ -486,36 +662,40 @@
 
   <section id="experience">
     <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">Background</div>
+      <div class="section-head">
+        <span class="section-eyebrow">Track Record</span>
         <h2 class="section-title">Engineering Experience & Leadership</h2>
       </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-title">Embedded Electronics & Payload Subteam Member • WURocketry</div>
-          <div class="timeline-meta">Aug 2024 – Present • St. Louis, MO (NASA USLI Competition)</div>
-          <p class="timeline-desc">
+
+      <div class="experience-list">
+        <div class="experience-entry">
+          <h3 class="entry-role">Embedded Electronics & Payload Subteam Member • WURocketry</h3>
+          <div class="entry-meta">Aug 2024 – Present • St. Louis, MO (NASA USLI Competition)</div>
+          <p class="entry-body">
             Partnered across multi-disciplinary rocketry subteams to guarantee system-level electronic and mechanical compatibility. Delivered formal technical documentation, decision matrices, and specialized part designs for the NASA University Student Launch Initiative.
           </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-title">Data Operations Intern • FiberShed</div>
-          <div class="timeline-meta">Aug 2026 – Present • Remote / Point Reyes, CA</div>
-          <p class="timeline-desc">
+
+        <div class="experience-entry">
+          <h3 class="entry-role">Data Operations Intern • FiberShed</h3>
+          <div class="entry-meta">Aug 2026 – Present • Remote / Point Reyes, CA</div>
+          <p class="entry-body">
             Devised standardized organizational data infrastructure and developed an automated ETL pipeline using Python scripts and REST APIs to migrate 500+ records to Airtable, improving operational reporting accuracy.
           </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-title">Energy Specialist Driver • Rising Sun Center for Opportunity</div>
-          <div class="timeline-meta">Jun 2026 – Aug 2026 • San Francisco Bay Area, CA</div>
-          <p class="timeline-desc">
+
+        <div class="experience-entry">
+          <h3 class="entry-role">Energy Specialist Driver • Rising Sun Center for Opportunity</h3>
+          <div class="entry-meta">Jun 2026 – Aug 2026 • San Francisco Bay Area, CA</div>
+          <p class="entry-body">
             Conducted 50+ on-site residential engineering assessments analyzing mechanical and electrical efficiencies across 400+ appliances, achieving a 30% average reduction in home energy and water consumption.
           </p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-title">Director of Member & Alumni Engagement • Sigma Alpha Epsilon</div>
-          <div class="timeline-meta">Jan 2026 – Present • St. Louis, MO</div>
-          <p class="timeline-desc">
+
+        <div class="experience-entry">
+          <h3 class="entry-role">Director of Member & Alumni Engagement • Sigma Alpha Epsilon</h3>
+          <div class="entry-meta">Jan 2026 – Present • St. Louis, MO</div>
+          <p class="entry-body">
             Managed chapter operations and a $5,000+ operational budget for 80+ active collegiate members, re-engaging 90+ alumni across a 900+ member national network.
           </p>
         </div>
@@ -525,6 +705,7 @@
 
   <footer>
     <div class="container">
+      <div class="footer-brand">Justin Song</div>
       <div class="footer-links">
         <a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a>
         <a href="tel:6504558408">650-455-8408</a>
@@ -532,7 +713,7 @@
         <a href="https://github.com/justinsong2048" target="_blank">GitHub</a>
         <a href="#about">Back to Top ↑</a>
       </div>
-      <p>© 2026 Justin Song. Built for Summer 2027 Engineering Opportunities.</p>
+      <p class="footer-copy">© 2026 Justin Song. Built for Summer 2027 Engineering Opportunities.</p>
     </div>
   </footer>
 </body>
