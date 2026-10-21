@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Adaptive Cruise Control · Justin Song</title>
+  <meta name="description" content="Case study: a MATLAB adaptive cruise control simulation with a tuned PD controller. 0 collisions across three traffic scenarios.">
+  <link rel="canonical" href="https://justinsong2048.github.io/pages/project-acc.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Justin Song">
+  <meta property="og:title" content="Adaptive Cruise Control · Justin Song">
+  <meta property="og:description" content="Case study: a MATLAB adaptive cruise control simulation with a tuned PD controller. 0 collisions across three traffic scenarios.">
+  <meta property="og:url" content="https://justinsong2048.github.io/pages/project-acc.html">
+  <meta property="og:image" content="https://justinsong2048.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Justin Song, Mechanical Engineering at WashU: rocketry hardware, mechanisms and quantum circuits">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF8A4C'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%2309090b' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../index.html">Justin Song</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="prose">
+          <p class="crumb"><a href="projects.html">Work</a> / Adaptive cruise control</p>
+          <h1>Adaptive cruise control simulation</h1>
+          <p class="lede">A MATLAB model of a car that follows another car on its own. A tuned PD controller sets the follower's acceleration to hold a safe gap through steady traffic, a hard stop and stop-and-go swings.</p>
+        </div>
+      </header>
+
+      <div class="stats" aria-label="Key results">
+        <div class="stat"><span class="stat-n">0</span><span class="stat-t">Collisions across 3 traffic scenarios</span></div>
+        <div class="stat"><span class="stat-n">~30 s</span><span class="stat-t">To close a 400 ft gap to the 180 ft target</span></div>
+        <div class="stat"><span class="stat-n">≤ 11%</span><span class="stat-t">Gap error (about 20 ft) in fluctuating traffic</span></div>
+      </div>
+
+      <section class="zone zone--first" aria-labelledby="model-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">The model</span>
+            <h2 id="model-title">Two cars on one line</h2>
+            <p>We modeled the road as one dimension with a lead car and a follower. Each time step, the controller reads the gap error and how fast it's changing, then sets the follower's acceleration. We clamped acceleration to limits a real driver would accept, and capped speed.</p>
+            <p>Position and speed update with Euler integration over 1,200 steps of 0.05 s, which is 60 seconds of driving.</p>
+          </div>
+          <div class="stack">
+            <div class="equation">
+              e = gap − 180 ft<br>
+              a = K<sub>p</sub>·e + K<sub>d</sub>·ė<br>
+              −15 ≤ a ≤ +10 ft/s²
+              <small>K<sub>p</sub> = 0.1, K<sub>d</sub> = 0.7</small>
+            </div>
+            <div class="equation">
+              v<sub>k+1</sub> = v<sub>k</sub> + a·Δt<br>
+              x<sub>k+1</sub> = x<sub>k</sub> + v<sub>k</sub>·Δt
+              <small>Δt = 0.05 s, 1,200 steps</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="results-title">
+        <div class="zone-head">
+          <div>
+            <span class="label">Results</span>
+            <h2 id="results-title">Three scenarios</h2>
+          </div>
+          <p class="muted small">Select any plot to enlarge it.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">Scenario 1</span><h3>Constant speed</h3><p class="muted small">The lead car holds steady. The follower closes from 400 ft and settles at 180 ft in about 30 s.</p></div>
+          <div class="step-body">
+            <div class="gallery gallery--three">
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario1-lead-speed.webp" data-caption="Scenario 1 · Lead car speed."><img src="../assets/img/acc/scenario1-lead-speed.webp" width="843" height="678" alt="Scenario 1 lead car speed over time" loading="lazy"></button>
+                <figcaption><b>1a</b>Lead car speed</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario1-follower-speed.webp" data-caption="Scenario 1 · Follower speed."><img src="../assets/img/acc/scenario1-follower-speed.webp" width="843" height="678" alt="Scenario 1 follower speed over time" loading="lazy"></button>
+                <figcaption><b>1b</b>Follower speed</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario1-gap.webp" data-caption="Scenario 1 · Gap between the cars."><img src="../assets/img/acc/scenario1-gap.webp" width="856" height="678" alt="Scenario 1 gap between cars over time" loading="lazy"></button>
+                <figcaption><b>1c</b>Gap</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">Scenario 2</span><h3>Hard brake, 55 → 0 mph</h3><p class="muted small">At 10 s the lead car brakes at 15 ft/s² from 55 mph to a stop. The follower brakes within its own −15 ft/s² limit and never touches it.</p></div>
+          <div class="step-body">
+            <div class="gallery gallery--three">
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario2-lead-speed.webp" data-caption="Scenario 2 · Lead car speed."><img src="../assets/img/acc/scenario2-lead-speed.webp" width="843" height="678" alt="Scenario 2 lead car speed over time" loading="lazy"></button>
+                <figcaption><b>2a</b>Lead car speed</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario2-follower-speed.webp" data-caption="Scenario 2 · Follower speed."><img src="../assets/img/acc/scenario2-follower-speed.webp" width="843" height="678" alt="Scenario 2 follower speed over time" loading="lazy"></button>
+                <figcaption><b>2b</b>Follower speed</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario2-gap.webp" data-caption="Scenario 2 · Gap between the cars."><img src="../assets/img/acc/scenario2-gap.webp" width="856" height="678" alt="Scenario 2 gap between cars over time" loading="lazy"></button>
+                <figcaption><b>2c</b>Gap</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">Scenario 3</span><h3>±10 mph swings</h3><p class="muted small">The lead car swings between 50 and 70 mph on a 30 s sine wave. The gap stays within about 20 ft (11%) of the target.</p></div>
+          <div class="step-body">
+            <div class="gallery gallery--three">
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario3-lead-speed.webp" data-caption="Scenario 3 · Lead car speed."><img src="../assets/img/acc/scenario3-lead-speed.webp" width="843" height="678" alt="Scenario 3 lead car speed, a sine wave between 50 and 70 mph" loading="lazy"></button>
+                <figcaption><b>3a</b>Lead car speed</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario3-follower-speed.webp" data-caption="Scenario 3 · Follower speed."><img src="../assets/img/acc/scenario3-follower-speed.webp" width="843" height="678" alt="Scenario 3 follower speed over time" loading="lazy"></button>
+                <figcaption><b>3b</b>Follower speed</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/acc/scenario3-gap.webp" data-caption="Scenario 3 · Gap between the cars."><img src="../assets/img/acc/scenario3-gap.webp" width="856" height="678" alt="Scenario 3 gap between cars over time" loading="lazy"></button>
+                <figcaption><b>3c</b>Gap</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="outcome-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">Outcome</span>
+            <h2 id="outcome-title">Safe in every scenario</h2>
+            <p>The follower never collided in any of the three scenarios and stayed within its acceleration limits throughout.</p>
+            <p><strong>What I'd change:</strong> I'd add sensor delay to the model, since a real radar or camera reports the gap a moment late, and compare the PD controller against a PID controller to see whether an integral term removes any steady-state gap error.</p>
+          </div>
+          <div class="stack">
+            <span class="label">Files</span>
+            <ul class="files">
+              <li><a href="../assets/files/acc_simulation.m" target="_blank" rel="noopener"><span>Simulation: acc_simulation.m</span><span class="label">MATLAB · 4 KB</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <span class="label" id="details-title">Project details</span>
+        <dl class="spec">
+          <dt>Team</dt><dd>3 people</dd>
+          <dt>Timeline</dt><dd>May 2025 · Numerical Methods final project</dd>
+          <dt>Tools</dt><dd>MATLAB</dd>
+          <dt>Method</dt><dd>PD control · Euler integration, Δt = 0.05 s</dd>
+          <dt>Target gap</dt><dd>180 ft, starting from 400 ft</dd>
+        </dl>
+      </section>
+
+      <nav class="pager" aria-label="More projects">
+        <a href="project-simon.html"><span class="label">← Previous</span><h4>Simon game</h4></a>
+        <a href="project-wurocketry.html"><span class="label">Next →</span><h4>WURocketry</h4></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Justin Song · Mechanical Engineering, WashU · Updated Oct 2026</span>
+      <ul>
+        <li><a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/justin-z-song">LinkedIn</a></li>
+        <li><a href="https://github.com/justinsong2048">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>IBM Qiskit Global Summer School · Justin Song</title>
+  <meta name="description" content="Case study: hardware-aware GHZ circuits, noise modeling and error mitigation on IBM's 156-qubit ibm_fez processor at the Qiskit Global Summer School 2026.">
+  <link rel="canonical" href="https://justinsong2048.github.io/pages/project-qgss.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Justin Song">
+  <meta property="og:title" content="IBM Qiskit Global Summer School · Justin Song">
+  <meta property="og:description" content="Case study: hardware-aware GHZ circuits, noise modeling and error mitigation on IBM&#x27;s 156-qubit ibm_fez processor at the Qiskit Global Summer School 2026.">
+  <meta property="og:url" content="https://justinsong2048.github.io/pages/project-qgss.html">
+  <meta property="og:image" content="https://justinsong2048.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Justin Song, Mechanical Engineering at WashU: rocketry hardware, mechanisms and quantum circuits">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF8A4C'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%2309090b' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../index.html">Justin Song</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="prose">
+          <p class="crumb"><a href="projects.html">Work</a> / IBM QGSS</p>
+          <h1>IBM Qiskit Global Summer School</h1>
+          <p class="lede">Three graded labs on real IBM quantum hardware: designing circuits around the chip's wiring, modeling where noise comes from, and mitigating it on a 156-qubit processor.</p>
+        </div>
+      </header>
+
+      <div class="stats" aria-label="Key results">
+        <div class="stat"><span class="stat-n">−83%</span><span class="stat-t">Transpiled depth of a 64-qubit GHZ circuit (256 → 44)</span></div>
+        <div class="stat"><span class="stat-n">18 / 19</span><span class="stat-t">Graded exercises completed across 3 labs</span></div>
+        <div class="stat"><span class="stat-n">59</span><span class="stat-t">IBM backend models compared, 2017–2025</span></div>
+      </div>
+
+      <section class="zone zone--first" aria-labelledby="why-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">Why it matters</span>
+            <h2 id="why-title">Every gate adds noise</h2>
+            <p>On today's quantum processors, each gate has a small chance of error, and two-qubit gates are the worst. Not every pair of qubits is wired together either, so a circuit that looks short on paper can grow much deeper once it's mapped onto the real chip. Most of the work in these labs was fitting circuits to the hardware and then measuring and undoing the noise.</p>
+          </div>
+          <div class="callout">
+            <span class="label">About the code</span>
+            <p>QGSS asks participants not to share coursework, so this page describes methods and results only. I'm happy to walk through the work in an interview.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="approach-title">
+        <div class="zone-head">
+          <div>
+            <span class="label">What I did</span>
+            <h2 id="approach-title">Circuits, noise, mitigation</h2>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">1 · Circuits</span><h3>GHZ states that fit the chip</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>A GHZ state entangles every qubit in a register. IBM's heavy-hex layout connects each qubit to only two or three neighbors, and every SWAP to bridge a gap costs three more two-qubit gates. So I built the entangling order from a breadth-first-search spanning tree of the chip's coupling map, growing outward from a root qubit along real connections.</p>
+              <p>That cut a 64-qubit GHZ circuit's transpiled depth from 256 layers to 44, and reached the optimal depth on a 7-qubit T-junction. I also built dynamic GHZ circuits that use mid-circuit measurement and feedforward.</p>
+            </div>
+            <figure class="figure">
+              <div class="figure-frame">
+                <img src="../assets/img/qgss/ghz-depth.svg" width="640" height="300" alt="Bar chart: baseline GHZ circuit depth 256 layers, BFS spanning-tree circuit 44 layers" loading="lazy">
+              </div>
+              <figcaption><b>Fig. 1</b>Transpiled depth of a 64-qubit GHZ circuit, before and after the spanning-tree layout.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">2 · Noise</span><h3>Modeling where errors come from</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>In simulation, I modeled three kinds of noise: depolarizing error, Pauli error, and thermal relaxation set by each qubit's T<sub>1</sub> and T<sub>2</sub> times. I fit depolarizing error rates to within 0.5% using SciPy. I then compared T<sub>1</sub>/T<sub>2</sub>, gate and readout errors across 59 IBM backend models from 2017 to 2025, to see how the hardware has improved.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">3 · Mitigation</span><h3>Error mitigation on ibm_fez</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>On the real 156-qubit processor, I ran noise learning and then error-mitigated jobs on a 6-qubit Ising mirror circuit. I configured each technique through Qiskit Runtime:</p>
+              <ul>
+                <li><strong>Dynamical decoupling</strong> to protect idle qubits</li>
+                <li><strong>Pauli twirling</strong> to turn coherent errors into random ones</li>
+                <li><strong>TREX</strong> for readout errors</li>
+                <li><strong>Zero-noise extrapolation</strong>, which runs at amplified noise and extrapolates back to zero</li>
+                <li><strong>Probabilistic error cancellation</strong>, which uses the learned noise model</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="outcome-title">
+        <div class="prose">
+          <span class="label">Takeaway</span>
+          <h2 id="outcome-title">Why this points me at hardware</h2>
+          <p>The labs made it clear that most of what limits quantum computers today is physical: wiring, coherence time and calibration. That's the part I want to work on as a mechanical engineer.</p>
+        </div>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <span class="label" id="details-title">Project details</span>
+        <dl class="spec">
+          <dt>Program</dt><dd>IBM Qiskit Global Summer School 2026</dd>
+          <dt>Timeline</dt><dd>Jul 2026</dd>
+          <dt>Tools</dt><dd>Python, Qiskit, Qiskit Runtime, SciPy</dd>
+          <dt>Hardware</dt><dd>ibm_fez, a 156-qubit IBM Heron processor</dd>
+          <dt>Credential</dt><dd>Quantum Fundamentals</dd>
+        </dl>
+      </section>
+
+      <nav class="pager" aria-label="More projects">
+        <a href="project-armoire.html"><span class="label">← Previous</span><h4>Ghost Armoire</h4></a>
+        <a href="project-simon.html"><span class="label">Next →</span><h4>Simon game</h4></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Justin Song · Mechanical Engineering, WashU · Updated Oct 2026</span>
+      <ul>
+        <li><a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/justin-z-song">LinkedIn</a></li>
+        <li><a href="https://github.com/justinsong2048">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

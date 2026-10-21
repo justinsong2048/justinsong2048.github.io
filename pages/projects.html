@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Work · Justin Song</title>
+  <meta name="description" content="Five engineering projects by Justin Song: rocketry hardware, a spring-driven stage mechanism, quantum circuits run on IBM hardware, an Arduino game and a cruise-control simulation.">
+  <link rel="canonical" href="https://justinsong2048.github.io/pages/projects.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Justin Song">
+  <meta property="og:title" content="Work · Justin Song">
+  <meta property="og:description" content="Five engineering projects by Justin Song: rocketry hardware, a spring-driven stage mechanism, quantum circuits run on IBM hardware, an Arduino game and a cruise-control simulation.">
+  <meta property="og:url" content="https://justinsong2048.github.io/pages/projects.html">
+  <meta property="og:image" content="https://justinsong2048.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Justin Song, Mechanical Engineering at WashU: rocketry hardware, mechanisms and quantum circuits">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF8A4C'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%2309090b' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../index.html">Justin Song</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <section class="zone zone--first" aria-labelledby="page-title">
+        <div class="prose">
+          <span class="label label--accent">Work</span>
+          <h1 id="page-title">Projects</h1>
+          <p class="lede">Five projects, from rocket hardware I built and drop-tested to circuits run on a noisy 156-qubit processor. Each case study shows the analysis and how far each one went, from simulation to working hardware.</p>
+        </div>
+      </section>
+
+      <div class="filter-bar" role="group" aria-label="Filter projects" hidden>
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="mechanical" aria-pressed="false">Mechanical</button>
+        <button type="button" data-filter="embedded" aria-pressed="false">Embedded</button>
+        <button type="button" data-filter="controls" aria-pressed="false">Controls</button>
+        <button type="button" data-filter="computation" aria-pressed="false">Computation</button>
+      </div>
+
+      <div class="card-grid">
+        <a class="project-card" href="project-wurocketry.html" data-tags="mechanical">
+          <div class="card-media"><img src="../assets/img/rocketry/plate-assembled.webp" width="687" height="718" alt="Machined white Delrin retention plate with two solenoids, mounted on top of the gray payload tube"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="label label--accent">Aerospace structures</span><span class="label">Nov 2025 – Feb 2026</span></div>
+            <span class="status">Built &amp; tested</span>
+            <h2 class="card-title">WURocketry nosecone retention</h2>
+            <p class="card-result">1.8 safety factor at a 5,000 N snatch load; passed 25-ft drop tests.</p>
+            <ul class="tags"><li class="tag">SolidWorks</li><li class="tag">FEA</li><li class="tag">CNC</li></ul>
+          </div>
+        </a>
+        <a class="project-card" href="project-armoire.html" data-tags="mechanical">
+          <div class="card-media"><img src="../assets/img/armoire/motion-analysis.webp" width="483" height="510" alt="SolidWorks model of the spring drum and miter gears inside the armoire, with arrows showing rotation"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="label label--accent">Mechanism design</span><span class="label">Apr 2026</span></div>
+            <span class="status">Design + simulation</span>
+            <h2 class="card-title">Ghost Armoire door mechanism</h2>
+            <p class="card-result">Silent spring-driven door: spring sized from the door's inertia, gears checked, simulated in SolidWorks Motion.</p>
+            <ul class="tags"><li class="tag">SolidWorks Motion</li><li class="tag">Gearing</li><li class="tag">Springs</li></ul>
+          </div>
+        </a>
+        <a class="project-card" href="project-qgss.html" data-tags="computation">
+          <div class="card-media card-media--contain"><img src="../assets/img/qgss/ghz-depth.svg" width="640" height="300" alt="Bar chart: GHZ circuit depth cut from 256 to 44 layers"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="label label--accent">Quantum computing</span><span class="label">Jul 2026</span></div>
+            <span class="status">Run on IBM hardware</span>
+            <h2 class="card-title">IBM Qiskit Global Summer School</h2>
+            <p class="card-result">Cut a 64-qubit GHZ circuit's depth by 83% (256 → 44) on IBM's heavy-hex layout.</p>
+            <ul class="tags"><li class="tag">Qiskit</li><li class="tag">Python</li><li class="tag">SciPy</li></ul>
+          </div>
+        </a>
+        <a class="project-card" href="project-simon.html" data-tags="embedded">
+          <div class="card-media card-media--contain"><img src="../assets/img/simon/game-loop.svg" width="800" height="350" alt="State diagram of the Simon game firmware"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="label label--accent">Embedded systems</span><span class="label">Nov 2025</span></div>
+            <span class="status">Built &amp; demoed</span>
+            <h2 class="card-title">Simon memory game</h2>
+            <p class="card-result">Wired and programmed the full game: 8 LEDs, 5 buttons, an I2C OLED, up to 100 rounds.</p>
+            <ul class="tags"><li class="tag">Arduino</li><li class="tag">C++</li><li class="tag">I2C</li></ul>
+          </div>
+        </a>
+        <a class="project-card" href="project-acc.html" data-tags="controls computation">
+          <div class="card-media card-media--contain"><img src="../assets/img/acc/scenario2-gap.webp" width="856" height="678" alt="Plot of the gap between cars during a hard-braking scenario"></div>
+          <div class="card-body">
+            <div class="card-meta"><span class="label label--accent">Controls</span><span class="label">May 2025</span></div>
+            <span class="status">Simulation</span>
+            <h2 class="card-title">Adaptive cruise control simulation</h2>
+            <p class="card-result">0 collisions across 3 traffic scenarios; closed a 400 ft gap to 180 ft in about 30 s.</p>
+            <ul class="tags"><li class="tag">MATLAB</li><li class="tag">PD control</li></ul>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Justin Song · Mechanical Engineering, WashU · Updated Oct 2026</span>
+      <ul>
+        <li><a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/justin-z-song">LinkedIn</a></li>
+        <li><a href="https://github.com/justinsong2048">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

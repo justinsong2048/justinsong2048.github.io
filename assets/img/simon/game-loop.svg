@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" role="img" aria-labelledby="t d">
+  <title id="t">Simon firmware state diagram</title>
+  <desc id="d">Start screen leads to playback when START is pressed. Playback leads to input. Input leads to verify. A match adds one to the score and returns to playback with a longer sequence. A wrong button or a 10 second timeout leads to game over, which reseeds the sequence and returns to the start screen.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1A2028"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#B8440F"/>
+    </marker>
+  </defs>
+  <rect width="800" height="350" fill="#FFFFFF"/>
+  <g font-family="IBM Plex Mono, Consolas, monospace" font-size="11" fill="#56606B">
+    <!-- states -->
+    <g stroke="#1A2028" stroke-width="1.5" fill="#FFFFFF">
+      <rect x="20" y="110" width="140" height="56" rx="6"/>
+      <rect x="220" y="110" width="140" height="56" rx="6"/>
+      <rect x="420" y="110" width="140" height="56" rx="6"/>
+      <rect x="620" y="110" width="140" height="56" rx="6"/>
+      <rect x="620" y="250" width="140" height="56" rx="6" stroke="#B8440F"/>
+    </g>
+    <g fill="#1A2028" font-family="Archivo, Arial Narrow, Arial, sans-serif" font-weight="800" font-size="16" text-anchor="middle">
+      <text x="90" y="136">Start screen</text>
+      <text x="290" y="136">Playback</text>
+      <text x="490" y="136">Input</text>
+      <text x="690" y="136">Verify</text>
+      <text x="690" y="276" fill="#B8440F">Game over</text>
+    </g>
+    <g text-anchor="middle">
+      <text x="90" y="154">OLED: SIMON</text>
+      <text x="290" y="154">LED + tone, 400 ms</text>
+      <text x="490" y="154">poll 4 buttons</text>
+      <text x="690" y="154">user[i] == game[i]</text>
+      <text x="690" y="294">jingle + final score</text>
+    </g>
+    <!-- transitions -->
+    <g stroke="#1A2028" stroke-width="1.5" fill="none">
+      <line x1="160" y1="138" x2="218" y2="138" marker-end="url(#a)"/>
+      <line x1="360" y1="138" x2="418" y2="138" marker-end="url(#a)"/>
+      <line x1="560" y1="138" x2="618" y2="138" marker-end="url(#a)"/>
+      <path d="M690,110 V56 H290 V108" marker-end="url(#a)"/>
+      <path d="M620,278 H90 V168" stroke="#B8440F" marker-end="url(#b)"/>
+    </g>
+    <g stroke="#B8440F" stroke-width="1.5" fill="none">
+      <line x1="690" y1="166" x2="690" y2="248" marker-end="url(#b)"/>
+      <path d="M490,166 V226 H676 V248" marker-end="url(#b)"/>
+    </g>
+    <text x="189" y="128" text-anchor="middle">START</text>
+    <text x="389" y="128" text-anchor="middle">done</text>
+    <text x="589" y="128" text-anchor="middle">press</text>
+    <text x="490" y="46" text-anchor="middle" fill="#1A2028">match: score + 1, sequence grows by one (up to 100)</text>
+    <text x="500" y="218" fill="#B8440F">no press in 10 s</text>
+    <text x="700" y="210" fill="#B8440F">wrong button</text>
+    <text x="355" y="270" text-anchor="middle" fill="#B8440F">START again: new random sequence</text>
+  </g>
+</svg>

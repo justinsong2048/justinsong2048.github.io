@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ghost Armoire Mechanism · Justin Song</title>
+  <meta name="description" content="Case study: a silent, spring-driven door mechanism for a trick armoire set piece, sized from the door's inertia and verified in SolidWorks Motion.">
+  <link rel="canonical" href="https://justinsong2048.github.io/pages/project-armoire.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Justin Song">
+  <meta property="og:title" content="Ghost Armoire Mechanism · Justin Song">
+  <meta property="og:description" content="Case study: a silent, spring-driven door mechanism for a trick armoire set piece, sized from the door&#x27;s inertia and verified in SolidWorks Motion.">
+  <meta property="og:url" content="https://justinsong2048.github.io/pages/project-armoire.html">
+  <meta property="og:image" content="https://justinsong2048.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Justin Song, Mechanical Engineering at WashU: rocketry hardware, mechanisms and quantum circuits">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF8A4C'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%2309090b' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../index.html">Justin Song</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="prose">
+          <p class="crumb"><a href="projects.html">Work</a> / Ghost Armoire</p>
+          <h1>Ghost Armoire door mechanism</h1>
+          <p class="lede">A trick armoire for the stage. A performer inside releases a latch, and constant-force springs swing the doors open with no motor and no sound. One stagehand resets them between scenes.</p>
+        </div>
+      </header>
+
+      <div class="stats" aria-label="Key results">
+        <div class="stat"><span class="stat-n">0</span><span class="stat-t">Motors. The springs do all the work, silently.</span></div>
+        <div class="stat"><span class="stat-n">7.7 s</span><span class="stat-t">To an assumed 140° stop with the 3.29 lb spring, inside the 6–10 s target</span></div>
+        <div class="stat"><span class="stat-n">1</span><span class="stat-t">Stagehand resets both doors</span></div>
+      </div>
+
+      <section class="zone" aria-labelledby="problem-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">The problem</span>
+            <h2 id="problem-title">Doors that open by themselves, on cue</h2>
+            <p>The doors have to open as if no one touched them. The performer inside triggers them, so there's no visible stagehand and no motor noise, and one crew member has to reset them between scenes without tools.</p>
+          </div>
+          <div class="callout">
+            <span class="label">Requirements</span>
+            <ul>
+              <li>Silent, with no motor</li>
+              <li>Triggered from inside by the performer</li>
+              <li>One stagehand can reset it</li>
+              <li>Opens in 6–10 s</li>
+              <li>Opens to at least 135°, ideally 150°</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="approach-title">
+        <div class="zone-head">
+          <div>
+            <span class="label">Approach</span>
+            <h2 id="approach-title">Concept, sizing, motion check, reset</h2>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">1 · Concept</span><h3>Store energy, release on cue</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>A constant-force spring stores the energy to open each door, and an aluminum wire-frame latch holds the springs back until the cue. The performer pushes the top of the wire frame, which lifts it out of its mounting hole and frees the springs.</p>
+              <p>Each spring turns a horizontal shaft, but the door swings about a vertical hinge. So each door gets a pair of 1:1 miter gears that turn the rotation 90°. A 1:1 ratio keeps the spring's torque equal to the hinge torque, so the Step 2 sizing applies straight to the door. The door only needs 5/12 of a turn to reach 150°, so there's nothing to gear up or down. Each gear runs on a McMaster 57155K355 ball bearing with the same 1/4 in bore, so both mount on one shaft.</p>
+            </div>
+            <figure class="figure">
+              <div class="figure-frame">
+                <video src="../assets/video/armoire-spring-lock.mp4" controls muted playsinline preload="metadata" aria-label="Demonstration of a user activating the aluminum wire-frame mechanism"></video>
+              </div>
+              <figcaption><b>Fig. 1</b>Releasing the aluminum wire-frame latch.</figcaption>
+            </figure>
+            <div class="gallery">
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/armoire/motion-analysis.webp" data-caption="Fig. 2 · Constant-force spring, shaft and miter gears. The arrows show how the rotation transfers.">
+                  <img src="../assets/img/armoire/motion-analysis.webp" width="483" height="510" alt="CAD view of the constant-force spring on a shaft meshing through two bevel gears, with red arrows showing rotation" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 2</b>Spring, shaft and miter gears.</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/armoire/wire-frame-latch.webp" data-caption="Fig. 3 · The aluminum wire-frame latch: two wire frames joined by a top bar. Pushing the top lifts the frame out of its mounting hole and releases the springs.">
+                  <img src="../assets/img/armoire/wire-frame-latch.webp" width="455" height="551" alt="Isometric CAD view of the aluminum wire-frame latch: two Z-shaped wire frames standing upright, joined at their tops by a straight horizontal bar" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 3</b>The wire-frame latch.</figcaption>
+              </figure>
+              <figure class="figure">
+                <div class="figure-frame">
+                  <video src="../assets/video/armoire-gears.mp4" controls muted playsinline preload="metadata" aria-label="Close-up animation of the miter gears turning"></video>
+                </div>
+                <figcaption><b>Fig. 4</b>The miter gears turning.</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/armoire/miter-gear-6529K53.webp" data-caption="Fig. 5 · McMaster-Carr reference drawing of the miter gear (6529K53): 24 teeth, 24 pitch, 1 in pitch diameter, 13/64 in face width, 1/4 in bore.">
+                  <img src="../assets/img/armoire/miter-gear-6529K53.webp" width="1210" height="935" alt="McMaster-Carr drawing of miter gear 6529K53: 24 teeth, 1 inch pitch diameter, 1.06 inch outside diameter, 13/64 inch face width, 1/4 inch bore, 0.625 inch hub" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 5</b>Miter gear drawing (McMaster 6529K53).</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">2 · Sizing</span><h3>Sizing the spring, checking the gears</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>The required torque comes from the door's moment of inertia about the hinge and the angular acceleration needed to open it in 8 s, the middle of the 6–10 s target.</p>
+            </div>
+            <div class="equation">
+              α = 2θ / t²<br>
+              τ<sub>req</sub> = I · α<br>
+              τ<sub>spring</sub> = F · r<sub>drum</sub> ≥ τ<sub>req</sub>
+              <small>θ = 150° (2.62 rad), t = 8 s → α ≈ 0.082 rad/s² · I ≈ 1.50 kg·m² (22 lb mahogany door plus gear train, from the motion study; hand check: a uniform 22 lb door 0.64 m wide, turning about its edge, gives m·w²/3 ≈ 1.37 kg·m², within 10%) → τ<sub>req</sub> ≈ 0.12 N·m</small>
+            </div>
+            <div class="prose">
+              <p>A constant-force spring pulls at the radius of its drum, and the drum has to be 10–20% larger than the spring's inner diameter, so force and drum size come as a pair. I compared catalog springs by the torque each gives on its own drum:</p>
+              <ul>
+                <li>1.48 lb, 0.45 in ID, 0.5 in drum: 0.042 N·m. Far too weak.</li>
+                <li>2.63 lb, 0.59 in ID, 0.70 in drum: 0.105 N·m. Short of 0.12 N·m.</li>
+                <li><strong>3.29 lb, 0.61 in ID, 0.67 in drum: 0.125 N·m.</strong> Meets it. Selected (McMaster 9293K116).</li>
+              </ul>
+              <p>With 1:1 gears the drum turns as far as the door, so a 140° swing rewinds 0.82 in of strip (0.335 in × 2.44 rad). The spring reaches its rated force after about 1.25 drum diameters of extension (0.84 in), so it's pre-extended at least 1.7 in with the door closed and pulls at full force all the way open.</p>
+            </div>
+            <figure class="figure">
+              <button class="figure-frame" type="button" data-lightbox="../assets/img/armoire/constant-force-spring-9293K116.webp" data-caption="Fig. 6 · McMaster-Carr reference drawing of the selected spring (9293K116): 0.625 in wide, 0.008 in thick, 0.61 in ID, 0.83 in OD, 30 in extended length.">
+                <img src="../assets/img/armoire/constant-force-spring-9293K116.webp" width="1210" height="935" alt="McMaster-Carr drawing of constant-force strip spring 9293K116: strip 0.625 inches wide and 0.008 inches thick with a 0.196 inch end hole, coil inner diameter 0.61 inches and outer diameter 0.83 inches, extended length 30 inches" loading="lazy">
+              </button>
+              <figcaption><b>Fig. 6</b>The selected spring, McMaster 9293K116 (reference drawing).</figcaption>
+            </figure>
+            <div class="prose">
+              <p><strong>Gears and bearings.</strong> McMaster doesn't publish a torque rating for the 6529K53 miter gear, so I checked tooth bending with the Lewis equation at the gear's mean radius, using the bevel gear's equivalent tooth count (24 / cos 45° ≈ 34 teeth).</p>
+            </div>
+            <div class="equation">
+              F<sub>t</sub> = τ / r<sub>mean</sub><br>
+              σ = F<sub>t</sub> · P<sub>mean</sub> / (b · Y)
+              <small>τ = 0.125 N·m (1.10 in·lb), r<sub>mean</sub> = 0.43 in → F<sub>t</sub> ≈ 2.6 lb · P<sub>mean</sub> ≈ 28 teeth/in, b = 13/64 in, Y ≈ 0.37 → σ ≈ 960 psi, against a yield strength of at least 50 ksi for unhardened 1144 steel: safety factor over 50</small>
+            </div>
+            <div class="prose">
+              <p>The same mesh puts about 2.7 lb radial and 0.7 lb axial load on each gear's bearing. The door's weight goes into the hinges, not these bearings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">3 · Motion check</span><h3>Tested in SolidWorks Motion</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>I modeled the spring as a constant 0.125 N·m torque on the driving miter gear. Gear and lock mates carry it to the left door, which starts closed; the right door has the same mechanism. The study has no friction or contact. The cabinet as modeled stops the door at 122°, so I assumed a 140° door stop, inside the 135–150° target.</p>
+              <ul>
+                <li>The door reaches 140° in <strong>7.7 s</strong>, inside the 6–10 s target, at about <strong>36°/s</strong>.</li>
+                <li>Friction only slows the door, so it can't open faster than 7.7 s. Reaching 140° in 10 s needs just 0.073 N·m, which leaves about 0.05 N·m (40% of the spring's torque) for hinge friction.</li>
+              </ul>
+              <p>Two problems remain:</p>
+              <ul>
+                <li>The 140° stop is assumed. The cabinet as modeled stops the door at <strong>122°</strong>, so it has to be changed where it meets the door.</li>
+                <li>The spring keeps accelerating the door, so it hits the stop at about 36°/s. That's a slam, not the slow, eerie swing the scene needs.</li>
+              </ul>
+              <p><strong>Friction, for scale:</strong> if the hinges behave like mahogany on mahogany, the static coefficient is about 0.25–0.5 and the kinetic about 0.20. The closer the spring's torque is to the kinetic friction torque, the closer the door comes to a steady swing instead of speeding into the stop.</p>
+            </div>
+            <figure class="figure">
+              <button class="figure-frame" type="button" data-lightbox="../assets/img/armoire/door-angle-vs-time.webp" data-caption="Fig. 7 · Door angle vs. time for the 3.29 lb spring on a 0.67 in drum (0.125 N·m), against the 6–10 s and 135–150° targets, the assumed 140° stop and the 122° stop in the cabinet as modeled.">
+                <img src="../assets/img/armoire/door-angle-vs-time.webp" width="1200" height="675" alt="Plot of door opening angle versus time for the 3.29 lb spring on a 0.67 inch drum, starting from closed: the door reaches the assumed 140 degree stop at 7.7 seconds at about 36 degrees per second, inside the 6 to 10 second and 135 to 150 degree target bands; a dotted line marks the 122 degree stop in the cabinet as modeled" loading="lazy">
+              </button>
+              <figcaption><b>Fig. 7</b>Door angle vs. time against the targets and stops.</figcaption>
+            </figure>
+            <figure class="figure">
+              <div class="figure-frame">
+                <video src="../assets/video/armoire-motion-study-3p29lb.mp4" controls muted playsinline preload="metadata" aria-label="Isometric SolidWorks Motion study with the 3.29 lb spring: 0.125 N·m on the driving miter gear swings door L open from closed to 140 degrees in 7.7 seconds"></video>
+              </div>
+              <figcaption><b>Fig. 8</b>The motion study: closed to the assumed 140° stop in 7.7 s.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">4 · Reset and docs</span><h3>One-person reset</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>A Y-shaped rope tied to a hook on the bottom of each door lets one stagehand pull both doors closed and recharge both springs in one motion. I documented the mechanism in a bill of materials (Table 1) and SolidWorks drawings.</p>
+            </div>
+            <figure class="figure">
+              <div class="figure-frame table-frame">
+                <table class="bom">
+                  <thead>
+                    <tr><th scope="col">#</th><th scope="col">Part</th><th scope="col">Description</th><th scope="col" class="qty">Qty</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>1</td><td class="part">6529K53 Metal Miter Gear</td><td>McMaster-Carr bevel gear, one 1:1 pair per door</td><td class="qty">4</td></tr>
+                    <tr><td>2</td><td class="part">9293K116 Constant Force Strip Spring</td><td>McMaster-Carr, 3.29 lb, 0.61 in ID; one per door on a 0.67 in drum. Keeps the door shut and, when released, pulls it open</td><td class="qty">2</td></tr>
+                    <tr><td>3</td><td class="part">Aluminum Wire Frame</td><td>Custom aluminum frame that holds the springs until the performer releases it</td><td class="qty">1</td></tr>
+                    <tr><td>4</td><td class="part">57155K355 Stainless Steel Ball Bearing</td><td>McMaster-Carr steel ball bearing, one per miter gear and two for the wire frame</td><td class="qty">6</td></tr>
+                    <tr><td>5</td><td class="part">Wood mounting hole block</td><td>Custom cut/drilled wood block</td><td class="qty">2</td></tr>
+                    <tr><td>6</td><td class="part">Hinge gear shaft</td><td>Shaft for rotating door hinge gear, one per door</td><td class="qty">2</td></tr>
+                    <tr><td>7</td><td class="part">Bearing shaft</td><td>Custom machined shaft for bearing and gears, one per door</td><td class="qty">2</td></tr>
+                    <tr><td>8</td><td class="part">Hook</td><td>Screwed into the bottom of each door; the reset rope ties on here</td><td class="qty">2</td></tr>
+                    <tr><td>9</td><td class="part">Y-shaped rope</td><td>Joins both door hooks so one stagehand can close both doors</td><td class="qty">1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <figcaption><b>Table 1</b>Bill of materials for both doors.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="outcome-title">
+        <div class="prose">
+          <span class="label">Outcome</span>
+          <h2 id="outcome-title">What came out of it</h2>
+          <p>The armoire was never built for the stage. The project ended with the design, the drawings and the SolidWorks Motion study.</p>
+          <p><strong>What I'd change:</strong></p>
+          <ul>
+            <li>Add tracks along the cabinet's inner wall to keep the spring extended. This was only a simulation, and I suspect the spring would curl up as soon as it was released.</li>
+            <li>Calculate the hinge friction from the forces on the door and confirm it stays under the roughly 0.05 N·m the spring can spare.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <span class="label" id="details-title">Project details</span>
+        <dl class="spec">
+          <dt>Role</dt><dd>Designed the door mechanism, sized the spring, ran the motion study</dd>
+          <dt>Team</dt><dd>3 people</dd>
+          <dt>Timeline</dt><dd>Apr 2026 · MEMS 3110: Machine Elements</dd>
+          <dt>Tools</dt><dd>SolidWorks, SolidWorks Motion</dd>
+          <dt>Parts</dt><dd>Constant-force spring · 1:1 miter gears · wire-frame latch · Y-rope reset</dd>
+        </dl>
+      </section>
+
+      <nav class="pager" aria-label="More projects">
+        <a href="project-wurocketry.html"><span class="label">← Previous</span><h4>WURocketry</h4></a>
+        <a href="project-qgss.html"><span class="label">Next →</span><h4>IBM QGSS</h4></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Justin Song · Mechanical Engineering, WashU · Updated Oct 2026</span>
+      <ul>
+        <li><a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/justin-z-song">LinkedIn</a></li>
+        <li><a href="https://github.com/justinsong2048">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

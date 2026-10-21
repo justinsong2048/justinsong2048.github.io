@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Simon Memory Game · Justin Song</title>
+  <meta name="description" content="Case study: an Arduino Simon memory game. All wiring, firmware and the I2C OLED interface on a five-person team.">
+  <link rel="canonical" href="https://justinsong2048.github.io/pages/project-simon.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Justin Song">
+  <meta property="og:title" content="Simon Memory Game · Justin Song">
+  <meta property="og:description" content="Case study: an Arduino Simon memory game. All wiring, firmware and the I2C OLED interface on a five-person team.">
+  <meta property="og:url" content="https://justinsong2048.github.io/pages/project-simon.html">
+  <meta property="og:image" content="https://justinsong2048.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Justin Song, Mechanical Engineering at WashU: rocketry hardware, mechanisms and quantum circuits">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF8A4C'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%2309090b' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../index.html">Justin Song</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="prose">
+          <p class="crumb"><a href="projects.html">Work</a> / Simon game</p>
+          <h1>Simon memory game</h1>
+          <p class="lede">A working clone of the Simon memory game on an Arduino, with lights, tones, five buttons and an OLED score screen. It passed its final demo.</p>
+        </div>
+      </header>
+
+      <div class="stats" aria-label="Key results">
+        <div class="stat"><span class="stat-n">12</span><span class="stat-t">Signal lines wired</span></div>
+        <div class="stat"><span class="stat-n">100</span><span class="stat-t">Rounds before the sequence runs out</span></div>
+        <div class="stat"><span class="stat-n">10 s</span><span class="stat-t">Input timeout, tracked without blocking</span></div>
+      </div>
+
+      <section class="zone" aria-labelledby="approach-title">
+        <div class="zone-head">
+          <div>
+            <span class="label">How it works</span>
+            <h2 id="approach-title">Hardware, then firmware</h2>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">1 · Hardware</span><h3>12 signal lines, one board</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>Each color has a pair of LEDs wired in parallel, giving 8 LEDs on 4 output pins. The four color buttons and a START button use the Arduino's internal pull-ups, so no external resistors were needed. A speaker plays each color's tone, and the OLED shares the I2C bus on two more lines. I wired all of it. A teammate designed a 3D-printed case; the buttons, LEDs and OLED mount in its lid, but the case was too small to hold the board and wiring, so the electronics never fit inside it.</p>
+            </div>
+            <div class="table-scroll">
+              <dl class="spec">
+                <dt>Buttons</dt><dd>Red D13 · Green D12 · Yellow D11 · Blue D10 · Start D5 (all INPUT_PULLUP)</dd>
+                <dt>LED pairs</dt><dd>Red D9 · Green D8 · Yellow D7 · Blue D6</dd>
+                <dt>Speaker</dt><dd>D4 · tones C5 523 Hz, E5 659 Hz, G5 784 Hz, C6 1047 Hz</dd>
+                <dt>OLED</dt><dd>SSD1306, 128×64, I2C address 0x3C (SDA, SCL)</dd>
+              </dl>
+            </div>
+            <figure class="figure">
+              <div class="figure-frame figure-frame--portrait">
+                <video src="../assets/video/simon-breadboard-prototype.mp4" poster="../assets/img/simon/simon-breadboard-prototype-poster.webp" width="540" height="960" controls muted playsinline preload="metadata" aria-label="Breadboard prototype of the Simon game on a SparkFun RedBoard: a player presses the color buttons while the LEDs light and the OLED shows the game"></video>
+              </div>
+              <figcaption><b>Fig. 1</b>Breadboard prototype on a SparkFun RedBoard, mid-game. Unmute to hear the tones.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">2 · Firmware</span><h3>A four-phase game loop</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>At power-up, the game generates a random 100-step sequence, seeded from a floating analog pin. Each round plays back one more step than the last, with 400 ms cues. It then waits for the player to repeat the sequence, checking each press as it comes in.</p>
+              <p>Every wait is timed with <code>millis()</code>, so the game ends cleanly if no one presses anything for 10 seconds. A wrong press or a timeout plays the game-over jingle and shows the final score. Pressing START deals a fresh sequence.</p>
+            </div>
+            <figure class="figure">
+              <div class="figure-frame">
+                <img src="../assets/img/simon/game-loop.svg" width="800" height="350" alt="State diagram: start screen, playback, input and verify, with a loop back on a match and a game-over branch on a wrong press or timeout" loading="lazy">
+              </div>
+              <figcaption><b>Fig. 2</b>Firmware states. A match grows the sequence, and a wrong press or a timeout ends the game.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">3 · Interface</span><h3>Three OLED screens</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>The OLED shows a start menu ("SIMON · Press START"), a live score during play, and a game-over screen with the final score. Text is centered with a small helper that measures each string's pixel width.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="outcome-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">Outcome</span>
+            <h2 id="outcome-title">Passed the final demo</h2>
+            <p>The finished game passed the course's final demo, and I owned every wire and every line of firmware in it.</p>
+            <p><strong>What I'd change:</strong> I'd check the fit between the electronics and the chassis before anything was printed, by giving the teammate designing it the board's dimensions and a layout of the parts so the case could be sized around them.</p>
+          </div>
+          <div class="stack">
+            <span class="label">Files</span>
+            <ul class="files">
+              <li><a href="../assets/files/simon_oled.ino" target="_blank" rel="noopener"><span>Firmware: simon_oled.ino</span><span class="label">Arduino · 6 KB</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <span class="label" id="details-title">Project details</span>
+        <dl class="spec">
+          <dt>Role</dt><dd>All wiring, firmware and the OLED interface</dd>
+          <dt>Team</dt><dd>5 people</dd>
+          <dt>Timeline</dt><dd>Nov 2025 · MEMS 2000: Introduction to Electronic Circuits</dd>
+          <dt>Tools</dt><dd>Arduino C++, Adafruit SSD1306 library</dd>
+          <dt>Hardware</dt><dd>8 LEDs · 5 buttons · speaker · 128×64 I2C OLED</dd>
+        </dl>
+      </section>
+
+      <nav class="pager" aria-label="More projects">
+        <a href="project-qgss.html"><span class="label">← Previous</span><h4>IBM QGSS</h4></a>
+        <a href="project-acc.html"><span class="label">Next →</span><h4>Adaptive cruise control</h4></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Justin Song · Mechanical Engineering, WashU · Updated Oct 2026</span>
+      <ul>
+        <li><a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/justin-z-song">LinkedIn</a></li>
+        <li><a href="https://github.com/justinsong2048">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

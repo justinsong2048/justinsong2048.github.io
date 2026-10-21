@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WURocketry Nosecone Retention · Justin Song</title>
+  <meta name="description" content="Case study: a Delrin retention plate and PLA nosecone shoulder for WURocketry's NASA Student Launch rocket. 1.8 safety factor at a 5,000 N snatch load; passed 25-ft drop tests.">
+  <link rel="canonical" href="https://justinsong2048.github.io/pages/project-wurocketry.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Justin Song">
+  <meta property="og:title" content="WURocketry Nosecone Retention · Justin Song">
+  <meta property="og:description" content="Case study: a Delrin retention plate and PLA nosecone shoulder for WURocketry&#x27;s NASA Student Launch rocket. 1.8 safety factor at a 5,000 N snatch load; passed 25-ft drop tests.">
+  <meta property="og:url" content="https://justinsong2048.github.io/pages/project-wurocketry.html">
+  <meta property="og:image" content="https://justinsong2048.github.io/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Justin Song, Mechanical Engineering at WashU: rocketry hardware, mechanisms and quantum circuits">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FF8A4C'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%2309090b' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="../index.html">Justin Song</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <header class="case-head">
+        <div class="prose">
+          <p class="crumb"><a href="projects.html">Work</a> / WURocketry</p>
+          <h1>WURocketry nosecone retention</h1>
+          <p class="lede">A Delrin retention plate and a 3D-printed PLA nosecone shoulder that hold the nosecone and payload together through launch and recovery, for Washington University Rocketry's NASA Student Launch entry.</p>
+        </div>
+      </header>
+
+      <div class="stats" aria-label="Key results">
+        <div class="stat"><span class="stat-n">1.8</span><span class="stat-t">Safety factor at a 5,000 N snatch load</span></div>
+        <div class="stat"><span class="stat-n">25 ft</span><span class="stat-t">Drop tests passed</span></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-t">Shoulder revisions before the final part</span></div>
+      </div>
+
+      <section class="zone zone--first" aria-label="Hero figure">
+        <figure class="figure">
+          <button class="figure-frame figure-frame--hero" type="button" data-lightbox="../assets/img/rocketry/plate-assembled.webp" data-caption="Fig. 1 · The machined Delrin retention plate on the payload tube, carrying two 12 V solenoids.">
+            <img src="../assets/img/rocketry/plate-assembled.webp" width="687" height="718" alt="White Delrin retention plate with two solenoids mounted on top of the gray payload tube, on a workbench">
+          </button>
+          <figcaption><b>Fig. 1</b>The machined Delrin retention plate on the payload tube, carrying two 12 V solenoids.</figcaption>
+        </figure>
+      </section>
+
+      <section class="zone" aria-labelledby="problem-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">The problem</span>
+            <h2 id="problem-title">Hold it together, then let go on command</h2>
+            <p>The payload rides in the nosecone section. When the recovery parachute opens, the harness yanks that section hard, and the retention system has to survive the jerk without the nosecone separating or the payload shifting.</p>
+            <p>I calculated that snatch load with the team's 25× rule of thumb: 25 times the rocket's 42.4 lb dry weight (its weight after motor burnout, when the parachute deploys) is about 4.7 kN, which I rounded up to a 5,000 N design load. The shoulder also had to keep a sliding fit inside the body tube, and the whole assembly had to stay light.</p>
+          </div>
+          <div class="callout">
+            <span class="label">Requirements</span>
+            <ul>
+              <li>Survive a 5,000 N snatch load with margin</li>
+              <li>Keep the payload electronics fixed under launch and landing shock</li>
+              <li>Slide-fit into the airframe body tube</li>
+              <li>Release on command, using solenoid pins</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="approach-title">
+        <div class="zone-head">
+          <div>
+            <span class="label">Approach</span>
+            <h2 id="approach-title">Design, analysis, build, test</h2>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">1 · Design</span><h3>Choosing a retention method</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>I compared latches and hooks, Marman bands and solenoid pins, and the team scored the options in weighted decision matrices. Solenoid pins won: the team had used them the previous season, and they release on an electrical signal.</p>
+              <p>The plate carries both solenoids and bolts to the shoulder. I detailed it in a SolidWorks drawing to ASME Y14.5, with an overall envelope of 5.64 × 3.50 in at 1:2 scale.</p>
+              <p>I detailed the shoulder in its own drawing, with a section view through the solenoid pin holes to show the internal recess and the insert bores.</p>
+            </div>
+            <div class="gallery">
+              <figure class="figure">
+                <button class="figure-frame figure-frame--pad" type="button" data-lightbox="../assets/img/rocketry/plate-isometric.webp" data-caption="Fig. 2 · Retention plate, isometric view.">
+                  <img src="../assets/img/rocketry/plate-isometric.webp" width="1024" height="655" alt="Isometric CAD render of the cross-shaped retention plate" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 2</b>Retention plate, isometric view.</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/plate-drawing.webp" data-caption="Fig. 3 · Retention plate drawing, scale 1:2.">
+                  <img src="../assets/img/rocketry/plate-drawing.webp" width="2000" height="1545" alt="Dimensioned SolidWorks drawing of the retention plate" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 3</b>Retention plate drawing, scale 1:2. <a href="../assets/files/nosecone-retention-plate-drawing.pdf" target="_blank" rel="noopener">PDF</a></figcaption>
+              </figure>
+            </div>
+            <figure class="figure">
+              <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/shoulder-drawing.webp" data-caption="Fig. 4 · Nosecone shoulder drawing, scale 2:5, with Section A–A through the solenoid pin holes.">
+                <img src="../assets/img/rocketry/shoulder-drawing.webp" width="2000" height="1557" alt="SolidWorks drawing of the nosecone shoulder: top, bottom and front views plus Section A-A, with dimensions" loading="lazy">
+              </button>
+              <figcaption><b>Fig. 4</b>Nosecone shoulder drawing, scale 2:5. <a href="../assets/files/nosecone-shoulder-drawing.pdf" target="_blank" rel="noopener">PDF</a></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">2 · Analysis</span><h3>FEA on the shoulder</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>In SolidWorks Simulation, I applied the 5,000 N snatch load to the shoulder's upper face, where it attaches to the nosecone. I held the part with fixed-hinge fixtures at the two places it is actually restrained in the rocket. The first is the side holes, where the solenoid pins pass through the shoulder. The second is the heat-set inserts, where the retention plate screws in.</p>
+              <p>I used a fine mesh so the von Mises stress would read accurately around tight features like hole edges and corners, where it concentrates.</p>
+            </div>
+            <div class="gallery">
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/fea-setup-load.webp" data-caption="Fig. 5 · Load case: the 5,000 N snatch load (purple) on the upper face, where the shoulder attaches to the nosecone.">
+                  <img src="../assets/img/rocketry/fea-setup-load.webp" width="1200" height="900" alt="SolidWorks model of the cylindrical shoulder with purple force arrows pointing down onto its upper face and a green fixture marker at a side hole" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 5</b>Load: 5,000 N on the upper face (purple).</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/fea-setup-fixtures.webp" data-caption="Fig. 6 · Fixtures seen from below: fixed hinges (green) at the four heat-set inserts and at the solenoid pin holes on each side.">
+                  <img src="../assets/img/rocketry/fea-setup-fixtures.webp" width="1200" height="900" alt="Bottom view of the shoulder model with green fixed-hinge markers at four insert holes and at the side solenoid pin holes" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 6</b>Fixtures: fixed hinges (green) at the inserts and pin holes.</figcaption>
+              </figure>
+            </div>
+            <div class="prose">
+              <p>Peak von Mises stress was 14.9 MPa, at the fastener holes. Against the 27.5 MPa yield strength I used for PLA, that's a 1.8 safety factor. The shoulder was printed upright, with its layers stacked along the rocket's axis, so the snatch load pulls across the layer lines, PLA's weakest direction. The simulation treats the PLA as equally strong in every direction, so the real margin is likely below 1.8.</p>
+            </div>
+            <figure class="figure">
+              <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/shoulder-fea.webp" data-caption="Fig. 7 · Von Mises stress in the nosecone shoulder. Peak 14.9 MPa at the fastener holes.">
+                <img src="../assets/img/rocketry/shoulder-fea.webp" width="972" height="672" alt="FEA stress plot of the cylindrical nosecone shoulder, mostly blue with green spots at the bolt holes" loading="lazy">
+              </button>
+              <figcaption><b>Fig. 7</b>Von Mises stress in the nosecone shoulder. Peak 14.9 MPa at the fastener holes.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">3 · Build</span><h3>Machining and printing the parts</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>I machined the plate from Delrin stock, combining manual milling with CNC operations that I programmed at the machine with a shop technician. I worked with the structures subteam to hold the plate on their jig. I also drilled the body-tube mounting holes, leveling the tube on balancing blocks so the holes landed where the drawing said.</p>
+              <p>The shoulder was 3D-printed in PLA, with heat-set inserts in its bolt holes for the retention plate screws, and fits into the base of the nosecone.</p>
+            </div>
+            <div class="gallery gallery--photos">
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/shoulder-bottom.webp" data-caption="Fig. 8 · The printed PLA shoulder from below, with heat-set inserts for the retention plate screws.">
+                  <img src="../assets/img/rocketry/shoulder-bottom.webp" width="741" height="989" alt="Gray 3D-printed nosecone shoulder seen from below, showing its pockets, bolt holes and brass heat-set inserts" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 8</b>The printed PLA shoulder from below, with heat-set inserts for the retention plate screws.</figcaption>
+              </figure>
+              <figure class="figure">
+                <button class="figure-frame" type="button" data-lightbox="../assets/img/rocketry/nosecone-assembled.webp" data-caption="Fig. 9 · The nosecone with the shoulder (gray) fitted at its base.">
+                  <img src="../assets/img/rocketry/nosecone-assembled.webp" width="741" height="989" alt="Red rocket nosecone standing on a workbench, with the gray printed shoulder fitted at its base" loading="lazy">
+                </button>
+                <figcaption><b>Fig. 9</b>The nosecone with the shoulder (gray) fitted at its base.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-head"><span class="label label--accent">4 · Test</span><h3>Testing and assembly</h3></div>
+          <div class="step-body">
+            <div class="prose">
+              <p>The assembly passed 25-ft drop tests, coming out with no cracks or deformation that compromised the structure. Along the way, I took the shoulder through 3 revisions. I added fillets to remove the sharp corners where stress concentrated, and corrected the hole fit on the retention plate.</p>
+              <p>Assembly was the hardest part. The recessed cut in the shoulder that holds the solenoids left little clearance, so fitting the solenoids in with their pins was very tight.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="zone" aria-labelledby="outcome-title">
+        <div class="split">
+          <div class="prose">
+            <span class="label">Outcome</span>
+            <h2 id="outcome-title">Written up, reviewed and accepted by NASA</h2>
+            <p>I wrote the retention sections of the team's NASA Student Launch proposal, which NASA accepted, and of the Preliminary Design Review. I also presented the design at cross-team design reviews. I'm now mentoring a new member through the same CAD and machining process. The team didn't complete the subscale launches the competition required, so the payload didn't fly.</p>
+            <p><strong>What I'd change:</strong> I'd give the recessed extruded cut in the shoulder more clearance, so the solenoids and their pins go in easily during assembly. I'd also print and pull-test a coupon in the same orientation to measure PLA's strength across layers, and check the shoulder against that number instead.</p>
+          </div>
+          <div class="stack">
+            <span class="label">Files</span>
+            <ul class="files">
+              <li><a href="../assets/files/nosecone-retention-plate-drawing.pdf" target="_blank" rel="noopener"><span>Retention plate drawing</span><span class="label">PDF · 57 KB</span></a></li>
+              <li><a href="../assets/files/nosecone-shoulder-drawing.pdf" target="_blank" rel="noopener"><span>Nosecone shoulder drawing</span><span class="label">PDF · 66 KB</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="details" aria-labelledby="details-title">
+        <span class="label" id="details-title">Project details</span>
+        <dl class="spec">
+          <dt>Role</dt><dd>Owner of the nosecone retention system</dd>
+          <dt>Team</dt><dd>10-person payload subteam (6 mechanical, 4 electrical) in a 60-person club</dd>
+          <dt>Timeline</dt><dd>Nov 2025 – Feb 2026 · 3 revisions</dd>
+          <dt>Tools</dt><dd>SolidWorks, SolidWorks Simulation, CNC and manual mill</dd>
+          <dt>Materials</dt><dd>Delrin plate · PLA shoulder · two 12 V solenoids</dd>
+        </dl>
+      </section>
+
+      <nav class="pager" aria-label="More projects">
+        <a href="project-acc.html"><span class="label">← Previous</span><h4>Adaptive cruise control</h4></a>
+        <a href="project-armoire.html"><span class="label">Next →</span><h4>Ghost Armoire</h4></a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>Justin Song · Mechanical Engineering, WashU · Updated Oct 2026</span>
+      <ul>
+        <li><a href="mailto:j.z.song@wustl.edu">j.z.song@wustl.edu</a></li>
+        <li><a href="https://www.linkedin.com/in/justin-z-song">LinkedIn</a></li>
+        <li><a href="https://github.com/justinsong2048">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-labelledby="t d">
+  <title id="t">64-qubit GHZ circuit depth after transpiling</title>
+  <desc id="d">Baseline circuit depth 256 layers; BFS spanning-tree circuit depth 44 layers, an 83 percent reduction.</desc>
+  <rect width="640" height="300" fill="#FFFFFF"/>
+  <g font-family="IBM Plex Mono, Consolas, monospace" fill="#56606B" font-size="12">
+    <text x="24" y="36" fill="#1A2028" font-family="Archivo, Arial Narrow, Arial, sans-serif" font-weight="800" font-size="20">64-qubit GHZ state on heavy-hex</text>
+    <text x="24" y="58">Transpiled circuit depth (layers). Lower means less accumulated noise.</text>
+    <!-- grid: x = 120 + v * 480 / 256 -->
+    <g stroke="#D6DADD" stroke-width="1">
+      <line x1="120" y1="84" x2="120" y2="236"/>
+      <line x1="240" y1="84" x2="240" y2="236"/>
+      <line x1="360" y1="84" x2="360" y2="236"/>
+      <line x1="480" y1="84" x2="480" y2="236"/>
+      <line x1="600" y1="84" x2="600" y2="236"/>
+    </g>
+    <text x="120" y="256" text-anchor="middle">0</text>
+    <text x="240" y="256" text-anchor="middle">64</text>
+    <text x="360" y="256" text-anchor="middle">128</text>
+    <text x="480" y="256" text-anchor="middle">192</text>
+    <text x="600" y="256" text-anchor="middle">256</text>
+    <text x="360" y="284" text-anchor="middle">layers</text>
+    <text x="108" y="130" text-anchor="end" fill="#1A2028">Baseline</text>
+    <rect x="120" y="106" width="480" height="38" fill="#9AA3AD"/>
+    <text x="592" y="130" text-anchor="end" fill="#FFFFFF" font-weight="500">256</text>
+    <text x="108" y="196" text-anchor="end" fill="#1A2028">BFS tree</text>
+    <rect x="120" y="172" width="82.5" height="38" fill="#B8440F"/>
+    <text x="212" y="196" fill="#B8440F" font-weight="500">44  (−83%)</text>
+  </g>
+</svg>
